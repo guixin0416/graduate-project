@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Remote HCI Research Platform</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+</head>
+<body style="background-color: whitesmoke">
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="font-family: Calibri; background-color: white">
+		    <div class="container-fluid" style="border-bottom: 1px solid silver; box-shadow: whitesmoke 0px 0px 1px 1px; font-size: 18px">
+			    <div class="navbar-header">
+			        <a class="navbar-brand" href="#" style="height: 60px; line-height: 60px; padding-top: 0"></a>
+			    </div>
+			    <div>
+			        <ul class="nav navbar-nav">
+			            <li><a href="#" style="height: 65px; line-height: 65px; padding-top: 0; color: black"><span class="glyphicon glyphicon-home"></span>&nbsp Homepage</a></li>
+			            <li><a href="#" style="height: 65px; line-height: 65px; padding-top: 0; color: black"><span class="glyphicon glyphicon-question-sign"></span>&nbsp Help</a></li>
+			            <li class="dropdown">
+			                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 65px; line-height: 65px; padding-top: 0; color: black">
+			                    <span class="glyphicon glyphicon-user"></span>&nbsp My Account
+			                    <b class="caret"></b>
+			                </a>
+			                <ul class="dropdown-menu" style="font-size: 16px">
+			                    <li><a href="#" style="color: slategray">Profile</a></li>
+			                    <li class="divider"></li>
+			                    <li><a href="#" style="color: slategray">Terms & legal documents</a></li>
+			                    <li class="divider"></li>
+			                    <li><a href="#" style="color: slategray"><span class="glyphicon glyphicon-log-out"></span> &nbsp Sign out</a></li>
+			                </ul>
+			            </li>
+			        </ul>
+			    </div>
+		    </div>
+
+		    <div class="container-fluid" style="border-bottom: 1px solid whitesmoke; box-shadow: silver 0px 0px 1px 1px; font-size: 17px">
+			    <!-- <div class="navbar-header">
+			        <a class="navbar-brand" href="#" style="height: 58px; line-height: 58px; padding-top: 0"></a>
+			    </div> -->
+			    <div>
+			    	<p class="navbar-text" style="color: #000; font-size: 18px; font-weight: 500">Test Name</p>
+			        <ul class="nav navbar-nav navbar-right">
+			            <li class="active"><a href="#" style="height: 58px; line-height: 58px; padding-top: 0; color: slategray">Edit</a></li>
+			            <li><a href="#" style="height: 58px; line-height: 58px; padding-top: 0; color: slategray">Results</a></li>
+			            <li class="dropdown">
+			                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 58px; line-height: 58px; padding-top: 0">
+			                    <span class="glyphicon glyphicon-cog"></span>&nbsp Settings
+			                    <b class="caret"></b>
+			                </a>
+			                <ul class="dropdown-menu" style="font-size: 16px">
+			                    <li><a href="#" style="color: slategray"><span class="glyphicon glyphicon-eye-open"></span> &nbsp Preview</a></li>
+			                    <li><a href="#" style="color: slategray"><span class="glyphicon glyphicon-font"></span> &nbsp Rename</a></li>
+			                    <li><a href="#" style="color: slategray"><span class="glyphicon glyphicon-pencil"></span> &nbsp Edit</a></li>
+			                </ul>
+			            </li>
+			        </ul>
+			    </div>
+		    </div>
+		</nav>
+
+	<div class="container-fluid">
+		<br><br><br><br><br><br><br>
+		<div class="row">
+			<div class="col-md-3">
+				<div data-spy="affix" style="font-size: 18px; font-family: Calibri">
+					<!-- <div class="col-md-2"> -->
+				    	<div>
+				    		<ul class="nav nav-stacked">
+					            <li><a href="#" style="color: slategray"><i class="fa fa-hand-spock-o"></i>&nbsp Welcome Screen</a></li>
+					            <li><a href="#" style="color: slategray"><i class="fa fa-mouse-pointer"></i>&nbsp First Click</a></li>
+					            <li><a href="#" style="color: slategray"><i class="fa fa-thumbs-o-up"></i> &nbsp Thank-you Screen</a></li>
+					        </ul>
+				    	</div>
+				    <!-- </div> -->
+				    <div class="row" style="margin-left: 10px; margin-top: 30px">
+				    	<button class="btn btn-default btn-lg" style="width: 260px; color: #555555; font-weight: 550">Save and Preview</button>
+				    </div>
+				    <div class="row" style="margin-left: 10px; margin-top: 20px">
+				    	<button class="btn btn-primary btn-lg" style="width: 260px">Save and Continue</button>
+				    </div>
+				</div>
+			</div>
+
+			<div class="col-md-8" style="margin-left: -40px">
+				<div class="row">
+					<div style="background-color: white; border: 1px solid gainsboro; border-radius: 3px">
+						<div class="row">
+							<p style="font-size: 22px; margin-left: 50px; margin-top: 30px; font-family: Calibri; color: #555555"><strong>Test Details</strong></p>
+						</div>
+						<div class="row">
+							<form action="#" role="form" style="margin-left: 50px; margin-top: 20px; margin-right: 50px; margin-bottom: 30px">
+								<div class="form-group">
+									<label for="test-name" class="control-label" style="font-weight: lighter; font-size: 16px; color: slategray">Test Name</label>
+									<input type="text" id="test-name" name="test-name" class="form-control">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<br><br>
+				<div class="row">
+					<div style="background-color: #EBF0F1; border: 1px solid gainsboro; border-radius: 3px" id="welcome-bgcolor">
+						<div class="row">
+							<div class="col-md-6">
+								<p style="font-size: 22px; margin-left: 50px; margin-top: 30px; margin-bottom: 30px; font-family: Calibri; color: #555555"><i class="fa fa-hand-spock-o"></i>&nbsp <strong>Welcome Screen</strong></p>
+							</div>
+							<div class="col-md-6">
+								<button class="btn btn-default pull-right" id="btn-welcome-customize-toggle" style="font-size: 18px; margin-left: 50px; margin-top: 30px; margin-bottom: 25px; margin-right: 50px; font-family: Calibri; color: slategray">Customize</button>
+							</div>
+						</div>
+						<div class="row" id="div-welcome-customize-toggle">
+							<form action="#" role="form" style="margin-left: 50px; margin-right: 50px; margin-bottom: 30px">
+								<div class="form-group">
+									<label for="welcome-title" class="control-label" style="font-weight: lighter; font-size: 16px; color: slategray">Title</label>
+									<input type="text" id="welcome-title" name="welcome-title" class="form-control">
+								</div>
+								<div class="form-group">
+									<label for="welcome-message" class="control-label" style="font-weight: lighter; font-size: 16px; color: slategray">Message</label>
+									<textarea class="form-control" id="welcome-message" name="welcome-message" rows="4"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="welcome-start" class="control-label" style="font-weight: lighter; font-size: 16px; color: slategray">Start button text</label>
+									<input type="text" id="welcome-start" name="welcome-start" class="form-control" style="width: 250px">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<br><br>
+
+				<div class="row" id="add-task-div">
+					<div style="background-color: white; font-family: Calibri; padding-bottom: 5px; border: 1px solid gainsboro; border-radius: 3px">
+						<div class="row">
+							<p style="font-size: 22px; margin-left: 50px; margin-top: 30px; margin-bottom: 30px; color: #555555"><strong>Add a task / section</strong></p>
+						</div>
+						<div class="list-group" style="margin-right: 50px; margin-left: 50px">
+							<div class="row">
+								<div class="col-md-6">
+									<a href="javascript:void(0)" onclick="aClick()" class="list-group-item" style="border: none">
+										<div class="media">
+											<div class="media-left">
+												<i class="fa fa-mouse-pointer" style="font-size: 20px"></i>
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading" style="color: #555555; font-weight: 700">First Click</h4>
+												<p style="font-size: 16px; color: slategray">Ask participants to carry out a test by clicking somewhere on the image</p>
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="col-md-6">
+									<a href="javascript:void(0)" onclick="aClick()" class="list-group-item" style="border: none">
+										<div class="media">
+											<div class="media-left">
+												<i class="fa fa-location-arrow" style="font-size: 20px"></i>
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading" style="color: #555555; font-weight: 700">Navigation Test</h4>
+												<p style="font-size: 16px; color: slategray">Set a task for participants to carry out clicking through a series of screens</p>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<a href="javascript:void(0)" onclick="aClick()" class="list-group-item" style="border: none">
+										<div class="media">
+											<div class="media-left">
+												<i class="fa fa-info-circle" style="font-size: 22px"></i>
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading" style="color: #555555; font-weight: 700">Instruction</h4>
+												<p style="font-size: 16px; color: slategray">Set the scene or provide special instructions for participants to read</p>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+				
+				<div class="order">
+			        <span style="white-space:pre">   </span><span class="line"></span>
+			        <span style="white-space:pre">   </span><span class="txt"><button class="btn btn-default" style="border: none; background-color: whitesmoke; font-size: 16px; font-family: Calibri; color: slategray; vertical-align: middle"><i class="fa fa-plus-circle" style="font-size: 22px; vertical-align: middle"></i>&nbsp Add a task/section</button></span>
+			        <span style="white-space:pre">   </span><span class="line"></span>
+			    </div>
+			    <br>
+
+			    <div class="row">
+			    	<div style="background-color: white; border: 1px solid gainsboro; border-radius: 3px; font-family: Calibri">
+			    		<div class="row" style="margin-top: 30px; margin-left: 20px; margin-right: 20px; margin-bottom: 10px">
+			    			<div class="col-md-6">
+			    				<p style="font-size: 22px; color: #555555; font-weight: 700"><i class="fa fa-mouse-pointer" style="font-size: 16px"></i>&nbsp First Click</p>
+			    			</div>
+			    			<div class="col-md-6">
+			    				<button class="btn btn-default pull-right" style="border: none; font-size: 16px; color: slategray"><i class="fa fa-trash"></i> Delete</button>
+			    			</div>
+			    		</div>
+			    		<div class="row" style="margin-left: 30px; margin-right: 30px; margin-bottom: 20px">
+							<form action="#" role="form">
+								<div class="form-group">
+									<label for="first-click-instructions" class="control-label" style="font-weight: 500; font-size: 16px; color: slategray">Instructions</label>
+									<input type="text" id="first-click-instructions" name="first-click-instructions" class="form-control">
+								</div>
+								<div class="form-group">
+									<label class="control-label" style="font-weight: 500; font-size: 16px; color: slategray">Design</label>
+									<div class="row" style="border: 2px dashed #D6E1E4; margin: 0px; padding-top: 30px; padding-bottom: 30px; padding-left: 10px; padding-right: 10px; border-radius: 5px">
+										<div class="col-md-6">
+											<p style="font-size: 20px; color: #555555; font-weight: 600"><i class="fa fa-picture-o" style="font-size: 22px"></i>&nbsp Add an image</p>
+										</div>
+										<div class="col-md-6">
+											<label for="first-click-upload-image" class="btn btn-success pull-right" style="font-size: 16px; font-weight: 550">Browse files</label>
+        									<input type="file" id="first-click-upload-image" name="first-click-upload-image" style="display:none">
+										</div>
+									</div>
+								</div>
+								<div class="order">
+								    <span style="white-space:pre">   </span><span class="line2"></span>
+								    <span style="white-space:pre">   </span><span class="txt" style="font-weight: 500; font-size: 16px; color: slategray">Follow-up questions</span>
+								    <span style="white-space:pre">   </span><span class="line2"></span>
+								</div>
+								<div class="form-group">
+									<label for="first-click-question" class="control-label" style="font-weight: 500; font-size: 16px; color: slategray">Short text question</label>
+									<div class="row">
+										<div class="col-md-8">
+											<input type="text" id="first-click-question" name="first-click-question" class="form-control">
+										</div>
+										<div class="col-md-3">
+										    <select class="form-control" id="first-click-question-type" name="first-click-question-type">
+										    	<option value="1">Short text</option>
+										    	<option value="2">Radio buttons</option>
+										      	<option value="3">Check boxes</option>
+										    </select>
+										</div>
+										<div class="col-md-1">
+											<a href="javascript:void(0)" onclick="questionRemoveClick()"><i class="fa fa-trash-o" style="color: slategray; font-size: 20px; margin-top: 5px"></i></a>
+										</div>
+									</div>								
+								</div>
+								<span style="display: inline-block; width: 100%; border-top: 1px solid #B8CBCF"></span>
+								<div class="row" style="margin-left: 0px; margin-top: 10px">
+									<a href="javascript:void(0)" onclick="addQuestionClick()" style="font-size: 16px; color: #219DEF">Add another question</a>
+								</div>							
+							</form>
+						</div>
+			    	</div>
+			    </div>
+			    <br>
+
+			    <div class="order">
+			        <span style="white-space:pre">   </span><span class="line"></span>
+			        <span style="white-space:pre">   </span><span class="txt"><button class="btn btn-default" style="border: none; background-color: whitesmoke; font-size: 16px; font-family: Calibri; color: slategray; vertical-align: middle"><i class="fa fa-plus-circle" style="font-size: 22px; vertical-align: middle"></i>&nbsp Add a task/section</button></span>
+			        <span style="white-space:pre">   </span><span class="line"></span>
+			    </div>
+
+				<br>
+				<div class="row">
+					<div style="background-color: #EBF0F1; border: 1px solid gainsboro; border-radius: 3px" id="finish-bgcolor">
+						<div class="row">
+							<div class="col-md-6">
+								<p style="font-size: 22px; margin-left: 50px; margin-top: 30px; margin-bottom: 30px; font-family: Calibri; color: #555555"><i class="fa fa-thumbs-o-up"></i> &nbsp <strong>Thank-you Screen</strong></p>
+							</div>
+							<div class="col-md-6">
+								<button class="btn btn-default pull-right" id="btn-finish-customize-toggle" style="font-size: 18px;margin-left: 50px; margin-top: 30px; margin-bottom: 25px; margin-right: 50px; font-family: Calibri; color: grey">Customize</button>
+							</div>
+						</div>
+						<div class="row" id="div-finish-customize-toggle">
+							<form action="#" role="form" style="margin-left: 50px; margin-right: 50px; margin-bottom: 30px">
+								<div class="form-group">
+									<label for="finish-title" class="control-label" style="font-weight: lighter; font-size: 16px; color: slategray">Title</label>
+									<input type="text" id="finish-title" name="finish-title" class="form-control">
+								</div>
+								<div class="form-group">
+									<label for="finish-message" class="control-label" style="font-weight: lighter; font-size: 16px; color: slategray">Message</label>
+									<textarea class="form-control" id="finish-message" name="finish-message" rows="4"></textarea>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="row">
+			<div class="text-center" style="font-size: 12px">&copy UoE Informatics Copyright</div>
+		</div> -->
+		<br>			
+	</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+    	var if_welcome_customize = 0;
+    	var if_finish_customize = 0;
+    	$("#div-welcome-customize-toggle").hide();
+    	$("#div-finish-customize-toggle").hide();
+		$("#btn-welcome-customize-toggle").click(function(event) {
+			$("#div-welcome-customize-toggle").toggle(300);
+			if (if_welcome_customize == 0) {
+				if_welcome_customize = 1;
+				$(this).html("Use Default");
+				$(this).attr({
+					class: 'btn btn-primary pull-right',
+					style: 'font-size: 18px; margin-left: 50px; margin-top: 30px; margin-bottom: 25px; margin-right: 50px; font-family: Calibri'
+				});
+				$("#welcome-bgcolor").attr('style', 'background-color: white; border: 1px solid gainsboro; border-radius: 3px');
+			} else {
+				if_welcome_customize = 0;
+				$(this).html("Customize");
+				$(this).attr({
+					class: 'btn btn-default pull-right',
+					style: 'font-size: 18px; margin-left: 50px; margin-top: 30px; margin-bottom: 25px; margin-right: 50px; font-family: Calibri; color: slategray'
+				});
+				$("#welcome-bgcolor").attr('style', 'background-color: #EBF0F1; border: 1px solid gainsboro; border-radius: 3px');
+			}
+		});
+		$("#btn-finish-customize-toggle").click(function(event) {
+			$("#div-finish-customize-toggle").toggle(300);
+			if (if_finish_customize == 0) {
+				if_finish_customize = 1;
+				$(this).html("Use Default");
+				$(this).attr({
+					class: 'btn btn-primary pull-right',
+					style: 'font-size: 18px; margin-left: 50px; margin-top: 30px; margin-bottom: 25px; margin-right: 50px; font-family: Calibri'
+				});
+				$("#finish-bgcolor").attr('style', 'background-color: white; border: 1px solid gainsboro; border-radius: 3px');
+			} else {
+				if_finish_customize = 0;
+				$(this).html("Customize");
+				$(this).attr({
+					class: 'btn btn-default pull-right',
+					style: 'font-size: 18px; margin-left: 50px; margin-top: 30px; margin-bottom: 25px; margin-right: 50px; font-family: Calibri; color: slategray'
+				});
+				$("#finish-bgcolor").attr('style', 'background-color: #EBF0F1; border: 1px solid gainsboro; border-radius: 3px');
+			}
+		});
+
+		// $("#add-task-div").hide();
+	});    
+</script>

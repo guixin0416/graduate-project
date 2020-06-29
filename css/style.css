@@ -1,0 +1,27 @@
+h1,h2,h3,h4,h5,h6 {
+	font-weight: 300;
+}
+
+.box{
+	border: 1px solid #000;
+}
+
+.order {
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+}
+.order .line {
+    display: inline-block;
+    width: 38%;
+    border-top: 2px dashed #82B3D5;
+}
+.order .txt {
+    color: #555;
+    vertical-align: middle;
+}
+.order .line2 {
+    display: inline-block;
+    width: 41%;
+    border-top: 1px solid #B8CBCF;
+}
