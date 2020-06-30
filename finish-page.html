@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>HCI Coursework Evaluation Platform</title>
+	<title>Remote HCI Research Platform</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -14,22 +14,25 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row" style="margin-top: 100px">
-			<h3><strong>Hello there! Welcome to HCI CW1 evaluation.</strong></h3>
-			<br>
-			<p style="font-size: 20px">You've been invited to participate in a short test.</p>
+		<div class="row" style="margin-top: 30px">
+			<h3 class="text-center"><strong>Thank you very much for your participant!</strong></h3>
 		</div>
-		<br>
-		<div class="row">
-			<button id="btn-start" class="btn btn-primary btn-lg"><strong>Start</strong></button>
+		<div class="row" style="margin-top: 10px">
+			<h4 class="text-center">Please complete the survey below.</h4>
+		</div>
+		<div class="row" style="margin-top: 30px">
+			<form action="#" role="form" style="margin-left: 50px; margin-right: 50px; margin-bottom: 30px">
+				<div class="form-group center-block">
+					<label for="q1" class="control-label" style="font-size: 18px; color: slategray; font-family: Calibri">Question 1: Why you chose to click on where you did?</label>
+					<textarea class="form-control" id="q1" name="q1" rows="5"></textarea>
+				</div>
+			</form>
 		</div>
 	</div>
 </body>
 </html>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
-		$("#btn-start").click(function(event) {
-			window.location.href="first-click-test.html";
-		});
+		
 	});
 </script>

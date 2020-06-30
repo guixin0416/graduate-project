@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Remote HCI Research Platform</title>
+	<title>HCI Coursework Evaluation Platform</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -14,14 +14,85 @@
 </head>
 <body>
 	<div class="container">
-		
+		<div class="row">
+			<p class="text-center" style="font-size: 20px; ; font-family: Calibri; margin-top: 20px"><strong>Where would you click to create a new album?</strong></p>
+		</div>
+		<div class="row">
+			<p class="text-center" style="font-size: 18px; ; font-family: Calibri; color: slategray; margin-top: 5px">Click on the image to carry out the instructions or complete the set task</p>
+		</div>
+		<div class="row">
+			<button class="btn btn-primary center-block" id="btn-show-image" style="font-size: 18px; ; font-family: Calibri; margin-top: 5px">Click to view image</button>
+		</div>
+		<!-- <div style="width: 130px; border-radius: 5px">
+			<button class="btn btn-primary" style="font-size: 16px; font-family: Calibri; margin: 10px">Confirm click</button>
+			<button class="btn btn-default center-block" style="font-size: 14px; font-family: Calibri; border: none; color: #219DEF; margin-top: -10px">cancel</button>
+		</div> -->
+		<div class="row">
+			<div style="background-color: whitesmoke; margin-top: 20px">
+				<img src="img/My_albums_1.jpg" class="center-block img-responsive" id="test-img" style="visibility: hidden" alt="Sorry, there is an error in the image display.">
+			</div>
+		</div>
 	</div>
 </body>
 </html>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
-		$("#btn-start").click(function(event) {
-			window.location.href="";
+		$("#btn-show-image").click(function(event) {
+			$("#test-img").css('visibility', 'visible');
+			$(this).remove();
+		});
+
+		$("#test-img").click(function(e) {
+			$("div.click-dot").remove();
+			$("div.confirm-cancel-click").remove();
+
+			$("#test-img").css('filter', 'brightness(70%)');
+
+			var posx = e.pageX;
+            var posy = e.pageY;
+            var offsetx = e.offsetX;
+            var offsety = e.offsetY;
+
+            var dot = document.createElement("div");
+        	dot.className = "click-dot";
+        	// modal.id = "hot_div" + (pointList.length + 1);
+       		dot.style.left = (posx - 5) + "px";
+        	dot.style.top = (posy - 5) + "px";
+        	dot.style.width = "10px";
+        	dot.style.height = "10px";
+        	document.body.appendChild(dot);
+        	$("div.click-dot").css({
+        		"position": "absolute",
+        		"z-index": "9",
+        		"border-radius": '50%',
+        		"background-color": '#108CDE',
+        		"border": '2px solid white'
+        	});
+
+        	var modal = document.createElement("div");
+        	modal.className = "confirm-cancel-click";
+        	modal.style.left = (posx + 5) + "px";
+        	modal.style.top = (posy + 5) + "px";
+        	modal.style.width = "130px";
+        	document.body.appendChild(modal);
+        	$("div.confirm-cancel-click").css({
+        		"position": "absolute",
+        		"z-index": "9",
+        		"border-radius": '5px',
+        		"background-color": 'white'
+        	});
+        	$("div.confirm-cancel-click").append('<button id="btn-confirm" class="btn btn-primary" style="font-size: 16px; font-family: Calibri; margin: 10px" onclick="confirmClick()">Confirm click</button>');
+        	$("div.confirm-cancel-click").append('<button id="btn-cancel" class="btn btn-default center-block" style="font-size: 14px; font-family: Calibri; border: none; color: #108CDE; margin-top: -10px" onclick="cancelClick()">cancel</button>');
 		});
 	});
+
+	function confirmClick() {
+		window.location.href = "finish-page.html";
+	}
+
+	function cancelClick() {
+		$("div.click-dot").remove();
+		$("div.confirm-cancel-click").remove();
+		$("#test-img").css('filter', 'brightness(100%)');
+	}
 </script>
