@@ -10,6 +10,7 @@
 	<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/layer.js"></script>
 	
 </head>
 <body style="background-color: whitesmoke">
@@ -40,12 +41,9 @@
 		    </div>
 
 		    <div class="container-fluid" style="border-bottom: 1px solid whitesmoke; box-shadow: silver 0px 0px 1px 1px; font-size: 17px">
-			    <!-- <div class="navbar-header">
-			        <a class="navbar-brand" href="#" style="height: 58px; line-height: 58px; padding-top: 0"></a>
-			    </div> -->
 			    <div>
-			    	<p class="navbar-text" style="color: #000; font-size: 18px; font-weight: 500">Test Name</p>
-			        <ul class="nav navbar-nav navbar-right">
+			    	<p class="navbar-text" style="color: #000; font-size: 18px; font-weight: 500">Create new test</p>
+			        <!-- <ul class="nav navbar-nav navbar-right">
 			            <li class="active"><a href="#" style="height: 58px; line-height: 58px; padding-top: 0; color: slategray">Edit</a></li>
 			            <li><a href="#" style="height: 58px; line-height: 58px; padding-top: 0; color: slategray">Results</a></li>
 			            <li class="dropdown">
@@ -59,22 +57,23 @@
 			                    <li><a href="#" style="color: slategray"><span class="glyphicon glyphicon-pencil"></span> &nbsp Edit</a></li>
 			                </ul>
 			            </li>
-			        </ul>
+			        </ul> -->
 			    </div>
 		    </div>
 		</nav>
 
 	<div class="container-fluid">
-		<br><br><br><br><br><br><br>
-		<div class="row">
+		<!-- <br><br><br><br><br><br><br> -->
+		<div class="row" style="margin-top: 140px">
+			<!-- 侧边栏 -->			
 			<div class="col-md-3">
 				<div data-spy="affix" style="font-size: 18px; font-family: Calibri">
 					<!-- <div class="col-md-2"> -->
 				    	<div>
-				    		<ul class="nav nav-stacked">
-					            <li><a href="#" style="color: slategray"><i class="fa fa-hand-spock-o"></i>&nbsp Welcome Screen</a></li>
-					            <li><a href="#" style="color: slategray"><i class="fa fa-mouse-pointer"></i>&nbsp First Click</a></li>
-					            <li><a href="#" style="color: slategray"><i class="fa fa-thumbs-o-up"></i> &nbsp Thank-you Screen</a></li>
+				    		<ul class="nav nav-stacked" id="sidebar">
+					            <li id="welcome-li"><a href="#welcome" style="color: slategray"><i class="fa fa-hand-spock-o"></i>&nbsp Welcome Screen</a></li>
+					            <!-- <li><a href="#" style="color: slategray"><i class="fa fa-mouse-pointer"></i>&nbsp First Click</a></li> -->
+					            <li id="thank-you-li"><a href="#thank-you" style="color: slategray"><i class="fa fa-thumbs-o-up"></i> &nbsp Thank-you Screen</a></li>
 					        </ul>
 				    	</div>
 				    <!-- </div> -->
@@ -82,29 +81,29 @@
 				    	<button class="btn btn-default btn-lg" style="width: 260px; color: #555555; font-weight: 550">Save and Preview</button>
 				    </div>
 				    <div class="row" style="margin-left: 10px; margin-top: 20px">
-				    	<button class="btn btn-primary btn-lg" style="width: 260px">Save and Continue</button>
+				    	<button class="btn btn-primary btn-lg" style="width: 260px" onclick="submitFormData()">Save and Continue</button>
 				    </div>
 				</div>
 			</div>
 
 			<div class="col-md-8" style="margin-left: -40px">
-				<div class="row">
+				<div class="row" style="margin-bottom: 30px">
 					<div style="background-color: white; border: 1px solid gainsboro; border-radius: 3px">
 						<div class="row">
 							<p style="font-size: 22px; margin-left: 50px; margin-top: 30px; font-family: Calibri; color: #555555"><strong>Test Details</strong></p>
 						</div>
 						<div class="row">
-							<form action="#" role="form" style="margin-left: 50px; margin-top: 20px; margin-right: 50px; margin-bottom: 30px">
+							<form action="#" method="post" id="test-detail-form" style="margin-left: 50px; margin-top: 20px; margin-right: 50px; margin-bottom: 30px">
 								<div class="form-group">
-									<label for="test-name" class="control-label" style="font-weight: lighter; font-size: 16px; color: slategray">Test Name</label>
+									<label for="test-name" class="control-label" style="font-weight: 500; font-size: 14px; color: slategray">Test Name</label>
 									<input type="text" id="test-name" name="test-name" class="form-control">
 								</div>
 							</form>
 						</div>
 					</div>
 				</div>
-				<br><br>
-				<div class="row">
+
+				<div class="row" id="welcome" style="margin-bottom: 30px; margin-top: 30px">
 					<div style="background-color: #EBF0F1; border: 1px solid gainsboro; border-radius: 3px" id="welcome-bgcolor">
 						<div class="row">
 							<div class="col-md-6">
@@ -115,7 +114,7 @@
 							</div>
 						</div>
 						<div class="row" id="div-welcome-customize-toggle">
-							<form action="#" role="form" style="margin-left: 50px; margin-right: 50px; margin-bottom: 30px">
+							<form action="#" id="welcome-form" style="margin-left: 50px; margin-right: 50px; margin-bottom: 30px">
 								<div class="form-group">
 									<label for="welcome-title" class="control-label" style="font-weight: lighter; font-size: 16px; color: slategray">Title</label>
 									<input type="text" id="welcome-title" name="welcome-title" class="form-control">
@@ -132,9 +131,8 @@
 						</div>
 					</div>
 				</div>
-				<br><br>
 
-				<div class="row" id="add-task-div">
+				<div class="row add-task-div" id="add-task-div-1" style="margin-top: 30px; margin-bottom: 15px">
 					<div style="background-color: white; font-family: Calibri; padding-bottom: 5px; border: 1px solid gainsboro; border-radius: 3px">
 						<div class="row">
 							<p style="font-size: 22px; margin-left: 50px; margin-top: 30px; margin-bottom: 30px; color: #555555"><strong>Add a task / section</strong></p>
@@ -142,7 +140,7 @@
 						<div class="list-group" style="margin-right: 50px; margin-left: 50px">
 							<div class="row">
 								<div class="col-md-6">
-									<a href="javascript:void(0)" onclick="aClick()" class="list-group-item" style="border: none">
+									<a href="javascript:void(0)" onclick="addFirstClickTestClick(this)" class="list-group-item" style="border: none">
 										<div class="media">
 											<div class="media-left">
 												<i class="fa fa-mouse-pointer" style="font-size: 20px"></i>
@@ -186,84 +184,16 @@
 						</div>
 					</div>
 				</div>
-				<br>
-				
-				<div class="order">
-			        <span style="white-space:pre">   </span><span class="line"></span>
-			        <span style="white-space:pre">   </span><span class="txt"><button class="btn btn-default" style="border: none; background-color: whitesmoke; font-size: 16px; font-family: Calibri; color: slategray; vertical-align: middle"><i class="fa fa-plus-circle" style="font-size: 22px; vertical-align: middle"></i>&nbsp Add a task/section</button></span>
-			        <span style="white-space:pre">   </span><span class="line"></span>
-			    </div>
-			    <br>
 
-			    <div class="row">
-			    	<div style="background-color: white; border: 1px solid gainsboro; border-radius: 3px; font-family: Calibri">
-			    		<div class="row" style="margin-top: 30px; margin-left: 20px; margin-right: 20px; margin-bottom: 10px">
-			    			<div class="col-md-6">
-			    				<p style="font-size: 22px; color: #555555; font-weight: 700"><i class="fa fa-mouse-pointer" style="font-size: 16px"></i>&nbsp First Click</p>
-			    			</div>
-			    			<div class="col-md-6">
-			    				<button class="btn btn-default pull-right" style="border: none; font-size: 16px; color: slategray"><i class="fa fa-trash"></i> Delete</button>
-			    			</div>
-			    		</div>
-			    		<div class="row" style="margin-left: 30px; margin-right: 30px; margin-bottom: 20px">
-							<form action="#" role="form">
-								<div class="form-group">
-									<label for="first-click-instructions" class="control-label" style="font-weight: 500; font-size: 16px; color: slategray">Instructions</label>
-									<input type="text" id="first-click-instructions" name="first-click-instructions" class="form-control">
-								</div>
-								<div class="form-group">
-									<label class="control-label" style="font-weight: 500; font-size: 16px; color: slategray">Design</label>
-									<div class="row" style="border: 2px dashed #D6E1E4; margin: 0px; padding-top: 30px; padding-bottom: 30px; padding-left: 10px; padding-right: 10px; border-radius: 5px">
-										<div class="col-md-6">
-											<p style="font-size: 20px; color: #555555; font-weight: 600"><i class="fa fa-picture-o" style="font-size: 22px"></i>&nbsp Add an image</p>
-										</div>
-										<div class="col-md-6">
-											<label for="first-click-upload-image" class="btn btn-success pull-right" style="font-size: 16px; font-weight: 550">Browse files</label>
-        									<input type="file" id="first-click-upload-image" name="first-click-upload-image" style="display:none">
-										</div>
-									</div>
-								</div>
-								<div class="order">
-								    <span style="white-space:pre">   </span><span class="line2"></span>
-								    <span style="white-space:pre">   </span><span class="txt" style="font-weight: 500; font-size: 16px; color: slategray">Follow-up questions</span>
-								    <span style="white-space:pre">   </span><span class="line2"></span>
-								</div>
-								<div class="form-group">
-									<label for="first-click-question" class="control-label" style="font-weight: 500; font-size: 16px; color: slategray">Short text question</label>
-									<div class="row">
-										<div class="col-md-8">
-											<input type="text" id="first-click-question" name="first-click-question" class="form-control">
-										</div>
-										<div class="col-md-3">
-										    <select class="form-control" id="first-click-question-type" name="first-click-question-type">
-										    	<option value="1">Short text</option>
-										    	<option value="2">Radio buttons</option>
-										      	<option value="3">Check boxes</option>
-										    </select>
-										</div>
-										<div class="col-md-1">
-											<a href="javascript:void(0)" onclick="questionRemoveClick()"><i class="fa fa-trash-o" style="color: slategray; font-size: 20px; margin-top: 5px"></i></a>
-										</div>
-									</div>								
-								</div>
-								<span style="display: inline-block; width: 100%; border-top: 1px solid #B8CBCF"></span>
-								<div class="row" style="margin-left: 0px; margin-top: 10px">
-									<a href="javascript:void(0)" onclick="addQuestionClick()" style="font-size: 16px; color: #219DEF">Add another question</a>
-								</div>							
-							</form>
-						</div>
-			    	</div>
-			    </div>
-			    <br>
+				<div class="row" id="order_add_task" style="display: none;">
+				    <div class="order">
+				        <span style="white-space:pre">   </span><span class="line"></span>
+				        <span style="white-space:pre">   </span><span class="txt"><button class="btn btn-default btn-add-task" style="border: none; background-color: whitesmoke; font-size: 16px; font-family: Calibri; color: slategray; vertical-align: middle" onclick="addTask(this)"><i class="fa fa-plus-circle" style="font-size: 22px; vertical-align: middle"></i>&nbsp Add a task/section</button></span>
+				        <span style="white-space:pre">   </span><span class="line"></span>
+				    </div>
+				</div>
 
-			    <div class="order">
-			        <span style="white-space:pre">   </span><span class="line"></span>
-			        <span style="white-space:pre">   </span><span class="txt"><button class="btn btn-default" style="border: none; background-color: whitesmoke; font-size: 16px; font-family: Calibri; color: slategray; vertical-align: middle"><i class="fa fa-plus-circle" style="font-size: 22px; vertical-align: middle"></i>&nbsp Add a task/section</button></span>
-			        <span style="white-space:pre">   </span><span class="line"></span>
-			    </div>
-
-				<br>
-				<div class="row">
+				<div class="row" id="thank-you" style="margin-top: 15px">
 					<div style="background-color: #EBF0F1; border: 1px solid gainsboro; border-radius: 3px" id="finish-bgcolor">
 						<div class="row">
 							<div class="col-md-6">
@@ -274,7 +204,7 @@
 							</div>
 						</div>
 						<div class="row" id="div-finish-customize-toggle">
-							<form action="#" role="form" style="margin-left: 50px; margin-right: 50px; margin-bottom: 30px">
+							<form action="#" id="thank-you-form" style="margin-left: 50px; margin-right: 50px; margin-bottom: 30px">
 								<div class="form-group">
 									<label for="finish-title" class="control-label" style="font-weight: lighter; font-size: 16px; color: slategray">Title</label>
 									<input type="text" id="finish-title" name="finish-title" class="form-control">
@@ -294,10 +224,197 @@
 		</div> -->
 		<br>			
 	</div>
+
+				<div class="row add-task-div" id="add-task-div-0" style="display: none; margin-top: 30px; margin-bottom: 15px">
+					<div style="background-color: white; font-family: Calibri; padding-bottom: 5px; border: 1px solid gainsboro; border-radius: 3px">
+						<div class="row">
+							<div class="col-md-6">
+								<p style="font-size: 22px; margin-left: 50px; margin-top: 30px; margin-bottom: 30px; color: #555555"><strong>Add a task / section</strong></p>
+							</div>
+							<div class="col-md-6">
+								<button class="btn btn-default pull-right btn-cancel-task" style="border: none; color: #219DEF; font-size: 18px;margin-top: 30px; margin-right: 30px; margin-bottom: 40px" onclick="cancelAddTaskClick(this)">Cancel</button>
+							</div>
+						</div>
+						<div class="list-group" style="margin-right: 50px; margin-left: 50px">
+							<div class="row">
+								<div class="col-md-6">
+									<a href="javascript:void(0)" onclick="addFirstClickTestClick(this)" class="list-group-item" style="border: none">
+										<div class="media">
+											<div class="media-left">
+												<i class="fa fa-mouse-pointer" style="font-size: 20px"></i>
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading" style="color: #555555; font-weight: 700">First Click</h4>
+												<p style="font-size: 16px; color: slategray">Ask participants to carry out a test by clicking somewhere on the image</p>
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="col-md-6">
+									<a href="javascript:void(0)" onclick="aClick()" class="list-group-item" style="border: none">
+										<div class="media">
+											<div class="media-left">
+												<i class="fa fa-location-arrow" style="font-size: 20px"></i>
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading" style="color: #555555; font-weight: 700">Navigation Test</h4>
+												<p style="font-size: 16px; color: slategray">Set a task for participants to carry out clicking through a series of screens</p>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<a href="javascript:void(0)" onclick="aClick()" class="list-group-item" style="border: none">
+										<div class="media">
+											<div class="media-left">
+												<i class="fa fa-info-circle" style="font-size: 22px"></i>
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading" style="color: #555555; font-weight: 700">Instruction</h4>
+												<p style="font-size: 16px; color: slategray">Set the scene or provide special instructions for participants to read</p>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row first-click-div" id="first-click-div-0" style="margin-top: 30px; margin-bottom: 15px; display: none">
+			    	<div style="background-color: white; border: 1px solid gainsboro; border-radius: 3px; font-family: Calibri">
+			    		<div class="row" style="margin-top: 30px; margin-left: 20px; margin-right: 20px; margin-bottom: 10px">
+			    			<div class="col-md-6">
+			    				<p id="first-click-title" style="font-size: 22px; color: #555555; font-weight: 700"><i class="fa fa-mouse-pointer" style="font-size: 16px"></i>&nbsp First Click</p>
+			    			</div>
+			    			<div class="col-md-6">
+			    				<button class="btn btn-default pull-right" style="border: none; font-size: 16px; color: slategray" onclick="deleteThisTaskClick(this)"><i class="fa fa-trash"></i> Delete</button>
+			    			</div>
+			    		</div>
+			    		<div class="row" style="margin-left: 30px; margin-right: 30px; margin-bottom: 20px">
+							<form action="#" enctype="multipart/form-data" id="first-click-form">
+								<div class="form-group">
+									<label for="first-click-instructions" id="first-click-instructions-label" class="control-label" style="font-weight: 500; font-size: 16px; color: slategray">Instructions</label>
+									<input type="text" id="first-click-instructions" name="first-click-instructions" class="form-control">
+								</div>
+								<div class="form-group">
+									<label class="control-label" style="font-weight: 500; font-size: 16px; color: slategray">Design</label>
+									<div class="row" id="first-click-browser-file" style="border: 2px dashed #D6E1E4; margin: 0px; padding-top: 30px; padding-bottom: 30px; padding-left: 10px; padding-right: 10px; border-radius: 5px">
+										<div class="col-md-6">
+											<p style="font-size: 20px; color: #555555; font-weight: 600"><i class="fa fa-picture-o" style="font-size: 22px"></i>&nbsp Add an image</p>
+										</div>
+										<div class="col-md-6">
+											<label for="first-click-upload-image" id="first-click-upload-image-label" class="btn btn-success pull-right" style="font-size: 16px; font-weight: 550">Browse files</label>
+        									<input type="file" id="first-click-upload-image" name="first-click-upload-image" style="display:none" accept=".jpg, .jpeg, .png, .bmp" onchange="screenshotUploadPreviewSmall(this)">
+										</div>
+									</div>
+									<div class="row" id="first-click-upload-preview-sm" style="border: 1px solid gainsboro; margin: 0px; border-radius: 5px; background-color: #F2F2F2">
+										<div class="col-md-4">
+											<div class="row" style="border: 1px solid gainsboro; width: 300px; height: 250px; border-radius: 3px; background-color: white; margin-top: 10px; margin-bottom: 10px; margin-left: 50px; padding: 20px">
+												<img src="" style="max-height: 100%; max-width: 100%" class="center-block" alt="Image display error">
+											</div>											
+										</div>
+										<div class="col-md-8">
+											<div class="row" style="margin-left: 70px; margin-top: 10px">
+												<p id="img-filename" style="font-size: 20px; font-family: Calibri; color: #555555; font-weight: 700"></p>
+											</div>
+											<div class="row" style="margin-left: 70px">
+												<a href="javascript:void(0)" onclick=""><p style="font-weight: 500; font-size: 16px; color: slategray"><i class="fa fa-eye"></i>&nbsp Preview</p></a>
+												<a href="javascript:void(0)" onclick="removeThisScreenshot(this)"><p style="font-weight: 500; font-size: 16px; color: slategray"><i class="fa fa-times"></i> &nbsp Remove</p></a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="order">
+								    <span style="white-space:pre">   </span><span class="line2"></span>
+								    <span style="white-space:pre">   </span><span class="txt" style="font-weight: 500; font-size: 16px; color: slategray">Follow-up questions</span>
+								    <span style="white-space:pre">   </span><span class="line2"></span>
+								</div>
+
+								<div id="count-question-div" class="1">
+									<div class="form-group" id="first-click-short-text-1" style="margin-left: 15px">
+										<label for="first-click-question-1" id="first-click-question-label-1" class="control-label" style="font-weight: 500; font-size: 16px; color: slategray">Short text question</label>
+										<div class="row">
+											<div class="col-md-8">
+												<input type="text" id="first-click-question-1" name="first-click-question-1" class="form-control">
+											</div>
+											<div class="col-md-3">
+											    <select class="form-control" id="first-click-question-type-1" name="first-click-question-type-1" onchange="firstClickQuestionTypeCheckField(this, this.value)">
+											    	<option value="short_text">Short text</option>
+											    	<option value="radio_buttons">Radio buttons</option>
+											      	<option value="check_boxes">Check boxes</option>
+											    </select>
+											</div>
+											<div class="col-md-1">
+												<a href="javascript:void(0)" onclick="questionRemoveClick(this)"><i class="fa fa-trash-o" style="color: slategray; font-size: 20px; margin-top: 5px"></i></a>
+											</div>
+										</div>
+										<span style="display: inline-block; width: 103%; border-top: 1px solid #B8CBCF; margin-top: 20px;margin-bottom: 5px; margin-left: -20px; margin-right: -20px"></span>
+									</div>
+																												
+									<div class="form-group" id="first-click-radio-2" style="margin-left: 15px">
+										<div id="count-choice-div-1-2" class="2">
+											<label for="first-click-question-2" id="first-click-question-label-2" class="control-label" style="font-weight: 500; font-size: 16px; color: slategray">Radio buttons question</label>
+											<div class="row">
+												<div class="col-md-8">
+													<input type="text" id="first-click-question-2" name="first-click-question-2" class="form-control">
+												</div>
+												<div class="col-md-3">
+												    <select class="form-control" id="first-click-question-type-2" name="first-click-question-type-2" onchange="firstClickQuestionTypeCheckField(this, this.value)">
+												    	<option value="short_text">Short text</option>
+												    	<option value="radio_buttons" selected>Radio buttons</option>
+												      	<option value="check_boxes">Check boxes</option>
+												    </select>
+												</div>
+												<div class="col-md-1">
+													<a href="javascript:void(0)" onclick="questionRemoveClick(this)"><i class="fa fa-trash-o" style="color: slategray; font-size: 20px; margin-top: 5px"></i></a>
+												</div>
+											</div>
+											<div class="row" style="margin-top: 10px">
+												<div class="col-md-offset-1">
+													<p style="font-weight: 500; font-size: 16px; color: slategray">Options:</p>
+												</div>
+											</div>
+											<div class="row" style="margin-bottom: 20px">
+												<div class="col-md-10 col-md-offset-1">
+													<input type="text" id="first-click-question-2-radio-1" name="first-click-question-2-radio-1" class="form-control">
+												</div>
+											</div>
+											<div class="row" style="margin-bottom: 20px">
+												<div class="col-md-10 col-md-offset-1">
+													<input type="text" id="first-click-question-2-radio-2" name="first-click-question-2-radio-2" class="form-control">
+												</div>
+											</div>
+											<div class="row" style="margin: -10px">
+												<div class="col-md-offset-1">
+													<a href="javascript:void(0)" onclick="addChoiceClick(this)" style="font-size: 16px; color: #219DEF">Add another choice</a>
+												</div>
+											</div>
+											<span style="display: inline-block; width: 103%; border-top: 1px solid #B8CBCF; margin-top: 20px;margin-bottom: 5px; margin-left: -20px; margin-right: -20px"></span>		
+										</div>
+									</div>							
+								
+									<div class="row" style="margin-left: 0px; margin-top: 10px">
+										<a href="javascript:void(0)" onclick="addQuestionClick(this)" style="font-size: 16px; color: #219DEF">Add another question</a>
+									</div>
+								</div>							
+							</form>
+						</div>
+			    	</div>
+			    </div>
 </body>
 </html>
 
 <script type="text/javascript">
+ 	window.onbeforeunload = function(e) {
+ 		var dialogText = 'Dialog text here';
+		e.returnValue = dialogText;
+		return dialogText;
+ 	}
+
     jQuery(document).ready(function($) {
     	var if_welcome_customize = 0;
     	var if_finish_customize = 0;
@@ -321,6 +438,10 @@
 					style: 'font-size: 18px; margin-left: 50px; margin-top: 30px; margin-bottom: 25px; margin-right: 50px; font-family: Calibri; color: slategray'
 				});
 				$("#welcome-bgcolor").attr('style', 'background-color: #EBF0F1; border: 1px solid gainsboro; border-radius: 3px');
+
+				$("#welcome-title").val('');
+				$("#welcome-message").val('');
+				$("#welcome-start").val('');
 			}
 		});
 		$("#btn-finish-customize-toggle").click(function(event) {
@@ -341,9 +462,450 @@
 					style: 'font-size: 18px; margin-left: 50px; margin-top: 30px; margin-bottom: 25px; margin-right: 50px; font-family: Calibri; color: slategray'
 				});
 				$("#finish-bgcolor").attr('style', 'background-color: #EBF0F1; border: 1px solid gainsboro; border-radius: 3px');
+
+				$("#finish-title").val('');
+				$("#finish-message").val('');
 			}
 		});
+	});
 
-		// $("#add-task-div").hide();
-	});    
+    var num_of_task = 1;
+    var real_num_of_task = 1;
+    function renumberedTasks() {
+    	var real_task_num = 1;
+    	$("body").find('form').each(function(index, el) {
+    		var this_id = $(this).attr('id');
+			if(this_id != 'test-detail-form' && this_id != 'welcome-form' && this_id != 'thank-you-form') {
+				var task_num = this_id.split('-').slice(-1)[0];
+				var task_type = this_id.split('-form-'+task_num).join('');
+				if(task_type == 'first-click') {
+					$("#"+task_type+"-title-"+task_num).html('&nbsp ' + real_task_num + ". First Click");
+				}
+				real_task_num ++;				
+			}
+		});
+		var real_task_num_2 = 1;
+		$("#sidebar").find('li').each(function(index, el) {
+			var this_id = $(this).attr('id');
+			if(this_id != 'welcome-li' && this_id != 'thank-you-li') {
+				// console.log($(this).find('a').text());
+				if($(this).find('a').text().indexOf('First Click') != -1) {
+					$(this).find('a').html('<i class="fa fa-mouse-pointer"></i>&nbsp ' + real_task_num_2 + '. First Click');
+				}
+				real_task_num_2 ++;			
+			}
+		});
+    }
+
+	function addTask(which) {
+		num_of_task ++;
+		real_num_of_task ++;
+		var order_this = $(which).closest('.order').parent();
+		var add_task_div = $("#add-task-div-0");
+		var duplicate = add_task_div.clone(true);
+		duplicate.attr('id', 'add-task-div-' + num_of_task);
+		duplicate.css('display', '');
+		duplicate.insertBefore(order_this);
+		$("#order_add_task").css('display', 'none');
+	}
+
+	function addFirstClickTestClick(which) {
+		var add_task_div_this = $(which).closest('.add-task-div');
+		var first_click_div = $("#first-click-div-0");
+		var duplicate = first_click_div.clone(true);
+		duplicate.attr('id', 'first-click-div-' + num_of_task);
+		duplicate.css('display', '');
+		// duplicate.find("#first-click-title").html("&nbsp " + num_of_task + ". First Click");
+		duplicate.find("#first-click-title").attr('id', 'first-click-title-' + num_of_task);
+		duplicate.find("#first-click-form").attr('id', 'first-click-form-' + num_of_task);
+		duplicate.find("#first-click-instructions-label").attr({
+			for: 'first-click-instructions-' + num_of_task,
+			id: 'first-click-instructions-label-' + num_of_task
+		});
+		duplicate.find("#first-click-instructions").attr({
+			name: 'first-click-instructions-' + num_of_task,
+			id: 'first-click-instructions-' + num_of_task
+		});
+		duplicate.find("#first-click-browser-file").attr('id', 'first-click-browser-file-' + num_of_task);
+		duplicate.find("#first-click-upload-image-label").attr({
+			for: 'first-click-upload-image-' + num_of_task,
+			id: 'first-click-upload-image-label-' + num_of_task
+		});
+		duplicate.find("#first-click-upload-image").attr({
+			name: 'first-click-upload-image-' + num_of_task,
+			id: 'first-click-upload-image-' + num_of_task
+		});
+		duplicate.find("#first-click-upload-preview-sm").remove();
+		duplicate.find("#count-question-div").attr('id', 'count-question-div-' + num_of_task);
+		duplicate.find("#first-click-short-text-1").attr('id', 'first-click-short-text-' + num_of_task + '-1');
+		duplicate.find("#first-click-radio-2").remove();
+		// duplicate.find("#first-click-question-label-1").html(num_of_task + ".1 Short text question");
+		duplicate.find("#first-click-question-label-1").attr({
+			for: 'first-click-question-' + num_of_task + '-1',
+			id: 'first-click-question-label-' + num_of_task + '-1'
+		});
+		duplicate.find("#first-click-question-1").attr({
+			name: 'first-click-question-' + num_of_task + '-1',
+			id: 'first-click-question-' + num_of_task + '-1'
+		});
+		duplicate.find("#first-click-question-type-1").attr({
+			name: 'first-click-question-type-' + num_of_task + '-1',
+			id: 'first-click-question-type-' + num_of_task + '-1'
+		});
+		duplicate.insertAfter(add_task_div_this);
+		add_task_div_this.remove();
+		$("#order_add_task").css('display', '');
+
+		str_li = '<li id="'+ 'first-click-div-' + num_of_task + '-li' + '"><a href="javascript:void(0)" onclick="navbarJump(this)" style="color: slategray"><i class="fa fa-mouse-pointer"></i>&nbsp First Click</a></li>';
+		$("#thank-you-li").before(str_li);
+
+		renumberedTasks();
+	}
+
+	function firstClickQuestionTypeCheckField(which, value) {
+		var form_group_this = $(which).closest('.form-group');
+		var task_num = form_group_this.attr('id').split('-').slice(-2)[0];
+		var ques_num = form_group_this.attr('id').split('-').slice(-2)[1];
+		switch(value) {
+			case 'short_text':
+				var question_short_text = $("#first-click-short-text-1");
+				var duplicate = question_short_text.clone(true);
+				duplicate.attr('id', 'first-click-short-text-' + task_num + '-' + ques_num);
+				// duplicate.find("#first-click-question-label-1").html(task_num + "." + ques_num + " Short text question");
+				duplicate.find("#first-click-question-label-1").attr({
+					for: 'first-click-question-' + task_num + '-' + ques_num,
+					id: 'first-click-question-label-' + task_num + '-' + ques_num
+				});
+				duplicate.find("#first-click-question-1").attr({
+					name: 'first-click-question-' + task_num + '-' + ques_num,
+					id: 'first-click-question-' + task_num + '-' + ques_num
+				});
+				duplicate.find("#first-click-question-type-1").attr({
+					name: 'first-click-question-type-' + task_num + '-' + ques_num,
+					id: 'first-click-question-type-' + task_num + '-' + ques_num
+				});
+				duplicate.insertAfter(form_group_this);
+				form_group_this.remove();
+			case 'radio_buttons':
+				var question_radio = $("#first-click-radio-2");
+				var duplicate = question_radio.clone(true);
+				duplicate.attr('id', 'first-click-radio-' + task_num + '-' + ques_num);
+				duplicate.find("#count-choice-div-1-2").attr('id', 'count-choice-div-' + task_num + '-' + ques_num);
+				// duplicate.find("#first-click-question-label-2").html(task_num + "." + ques_num + " Radio buttons question");
+				duplicate.find("#first-click-question-label-2").attr({
+					for: 'first-click-question-' + task_num + '-' + ques_num,
+					id: 'first-click-question-label-' + task_num + '-' + ques_num
+				});
+				duplicate.find("#first-click-question-2").attr({
+					name: 'first-click-question-' + task_num + '-' + ques_num,
+					id: 'first-click-question-' + task_num + '-' + ques_num
+				});
+				duplicate.find("#first-click-question-2-radio-1").attr({
+					name: 'first-click-question-' + task_num + '-' + ques_num + '-radio-1',
+					id: 'first-click-question-' + task_num + '-' + ques_num + '-radio-1'
+				});
+				duplicate.find("#first-click-question-2-radio-2").attr({
+					name: 'first-click-question-' + task_num + '-' + ques_num + '-radio-2',
+					id: 'first-click-question-' + task_num + '-' + ques_num + '-radio-2'
+				});
+				duplicate.insertAfter(form_group_this);
+				form_group_this.remove();
+			case 'check_boxes':
+				var question_checkbox = $("#first-click-radio-2");
+				var duplicate = question_checkbox.clone(true);
+				duplicate.find("select").val("radio_buttons").attr('selected', false);
+				duplicate.find("select").val("check_boxes").attr('selected', true);
+				duplicate.attr('id', 'first-click-checkbox-' + task_num + '-' + ques_num);
+				duplicate.find("#count-choice-div-1-2").attr('id', 'count-choice-div-' + task_num + '-' + ques_num);
+				duplicate.find("#first-click-question-label-2").html("Check boxes question");
+				duplicate.find("#first-click-question-label-2").attr({
+					for: 'first-click-question-' + task_num + '-' + ques_num,
+					id: 'first-click-question-label-' + task_num + '-' + ques_num
+				});
+				duplicate.find("#first-click-question-2").attr({
+					name: 'first-click-question-' + task_num + '-' + ques_num,
+					id: 'first-click-question-' + task_num + '-' + ques_num
+				});
+				duplicate.find("#first-click-question-2-radio-1").attr({
+					name: 'first-click-question-' + task_num + '-' + ques_num + '-checkbox-1',
+					id: 'first-click-question-' + task_num + '-' + ques_num + '-checkbox-1'
+				});
+				duplicate.find("#first-click-question-2-radio-2").attr({
+					name: 'first-click-question-' + task_num + '-' + ques_num + '-checkbox-2',
+					id: 'first-click-question-' + task_num + '-' + ques_num + '-checkbox-2'
+				});
+				duplicate.insertAfter(form_group_this);
+				form_group_this.remove();
+		}
+	}
+
+	function addQuestionClick(which) {
+		var this_parent = $(which).parent().parent();
+		var task_num = this_parent.attr('id').split('-').slice(-1)[0];
+		var ques_num = parseInt(this_parent.attr('class'));
+		ques_num ++;
+		ques_num = '' + ques_num;
+		this_parent.attr('class', ques_num);
+
+		var question_short_text = $("#first-click-short-text-1");
+		var duplicate = question_short_text.clone(true);
+		duplicate.attr('id', 'first-click-short-text-' + task_num + '-' + ques_num);
+		duplicate.find("#first-click-question-label-1").html("Short text question");
+		duplicate.find("#first-click-question-label-1").attr({
+			for: 'first-click-question-' + task_num + '-' + ques_num,
+			id: 'first-click-question-label-' + task_num + '-' + ques_num
+		});
+		duplicate.find("#first-click-question-1").attr({
+			name: 'first-click-question-' + task_num + '-' + ques_num,
+			id: 'first-click-question-' + task_num + '-' + ques_num
+		});
+		duplicate.find("#first-click-question-type-1").attr({
+			name: 'first-click-question-type-' + task_num + '-' + ques_num,
+			id: 'first-click-question-type-' + task_num + '-' + ques_num
+		});
+		duplicate.insertBefore($(which));
+	}
+
+	function addChoiceClick(which) {
+		var this_row = $(which).closest('div.row');
+		var ques_type = $(which).closest('div.form-group').attr('id').split('-')[2];
+		var task_num = this_row.parent().attr('id').split('-').slice(-2)[0];
+		var ques_num = this_row.parent().attr('id').split('-').slice(-2)[1];
+		var choice_num = parseInt(this_row.parent().attr('class'));
+		choice_num ++;
+		choice_num = '' + choice_num;
+		this_row.parent().attr('class', choice_num);
+		str_input = '<div class="row" style="margin-bottom: 20px"><div class="col-md-10 col-md-offset-1"><input type="text" id="' + 'first-click-question-' + task_num + '-' + ques_num + '-' + ques_type + '-' + choice_num + '" name="first-click-question-'+task_num + '-' + ques_num + '-' + ques_type + '-' + choice_num + '" class="form-control"></div><div class="col-md-1"><a href="javascript:void(0)" onclick="choiceRemoveClick(this)"><i class="fa fa-times" style="color: darkgrey; font-size: 20px; margin-top: 5px"></i></a></div></div>'
+		this_row.before(str_input);				
+	}
+
+	function cancelAddTaskClick(which) {
+		$(which).closest('div.row').parent().parent().remove();
+		$("#order_add_task").css('display', '');
+		real_num_of_task --;
+	}
+
+	function deleteThisTaskClick(which) {
+		var this_task_div = $(which).closest('div.row').parent().parent();
+		var this_task_id = this_task_div.attr('id');
+		real_num_of_task --;
+		if(real_num_of_task < 1) {
+			num_of_task ++;
+			real_num_of_task ++;
+			var add_task_div = $("#add-task-div-0");
+			var duplicate = add_task_div.clone(true);
+			duplicate.attr('id', 'add-task-div-' + num_of_task);
+			duplicate.css('display', '');
+			duplicate.find('button.btn-cancel-task').remove();
+			duplicate.insertBefore(this_task_div);
+			$("#order_add_task").css('display', 'none');
+		}
+		this_task_div.remove();
+
+		str_li_id = this_task_id + '-li';
+		$("#" + str_li_id).remove();
+
+		renumberedTasks();
+	}
+
+	function questionRemoveClick(which) {
+		var this_form_group = $(which).closest('div.form-group');
+		var ques_num = parseInt(this_form_group.parent().attr('class'));
+		ques_num --;
+		this_form_group.parent().attr('class', '' + ques_num);
+		this_form_group.remove();
+	}
+
+	function choiceRemoveClick(which) {
+		var this_row = $(which).closest('div.row');
+		var choice_num = parseInt(this_row.parent().attr('class'));
+		choice_num --;
+		this_row.parent().attr('class', '' + choice_num);
+		this_row.remove();
+	}
+
+	function getFileName(path) {
+	    var pos1 = path.lastIndexOf('/');
+	    var pos2 = path.lastIndexOf('\\');
+	    var pos = Math.max(pos1, pos2);
+	    if (pos < 0) {
+	        return path;
+	    }
+	    else {
+	        return path.substring(pos + 1);
+	    }
+	}
+
+	function screenshotUploadPreviewSmall(which) {
+		var task_num = $(which).attr('id').split('-').slice(-1)[0];
+		var this_row = $(which).closest('div.row');
+		var screenshot_preview_sm = $("#first-click-upload-preview-sm");
+		var duplicate = screenshot_preview_sm.clone(true);
+		duplicate.attr('id', 'first-click-upload-preview-sm-' + task_num);
+		var img_filename = getFileName($(which).val());
+		duplicate.find("#img-filename").html(img_filename);
+		duplicate.find("#img-filename").attr('id', 'img-filename-' + task_num);
+
+		var img_o = $(which).get(0).files[0];
+		var reader = new FileReader();
+		// 调用reader.readAsDataURL()方法，把图片转成base64
+      	reader.readAsDataURL(img_o);
+      	// 监听reader对象的的onload事件，当图片加载完成时，把base64编码賦值给预览图片
+      	reader.addEventListener("load", function () {
+          	duplicate.find('img').attr('src', reader.result);
+      	}, false);
+
+      	duplicate.insertAfter(this_row);
+      	this_row.css('display', 'none');
+	}
+
+	function removeThisScreenshot(which) {
+		var task_num = $(which).closest('form').attr('id').split('-').slice(-1)[0];
+		$(which).parent().parent().parent().remove();
+		$("#first-click-browser-file-" + task_num).css('display', '');
+		$("#first-click-upload-image" + task_num).val('');
+	}
+
+	function submitFormData() {
+		var json_dict = {
+			'test_details': {'test_name': 'test'},
+			'welcome': {
+				'title': 'Hello there! Welcome to HCI CW1 evaluation.',
+				'message': 'You\'ve been invited to participate in a short test.',
+				'start_btn_text': 'Start'
+			},
+			'thank_you': {
+				'title': 'Thank you very much for your participant!',
+				'message': 'Your test results will be very helpful to us.'
+			},
+			'tasks': []
+		};
+
+		if($("#test-name").val() == '') {
+			$("#test-name")[0].focus();
+			layer.tips('This field cannot be empty!', '#test-name');
+			return false;
+		} else {
+			json_dict.test_details.test_name = $("#test-name").val();
+		}
+
+		if($("#welcome-title").val() != '') {json_dict.welcome.title = $("#welcome-title").val();}
+		if($("#welcome-message").val() != '') {json_dict.welcome.message = $("#welcome-message").val();}
+		if($("#welcome-start").val() != '') {json_dict.welcome.start_btn_text = $("#welcome-start").val();}
+		if($("#finish-title").val() != '') {json_dict.thank_you.title = $("#finish-title").val();}
+		if($("#finish-message").val() != '') {json_dict.thank_you.message = $("#finish-message").val();}
+		// console.log(json_dict);
+
+		var task_form_ids = [];
+		$("body").find('form:visible').each(function(index, el) {
+			var this_id = $(this).attr('id');
+			if(this_id != 'test-detail-form' && this_id != 'welcome-form' && this_id != 'thank-you-form') {
+				task_form_ids.push(this_id);
+			}
+		});
+		
+		var is_end_function = 0;
+		$.each(task_form_ids, function(index, val) {
+			var first_click_task_dict = {
+				'task_num': 1,
+				'task_type': 'first-click',
+				'instructions': '',
+				'screenshot': '',
+				'questions': []
+			}
+			var real_task_num = index + 1;
+			var task_num = val.split('-').slice(-1)[0];
+			var task_type = val.split('-form-'+task_num).join('');
+			var questions = [];
+			if(task_type == 'first-click') {
+				if($("#first-click-instructions-"+task_num).val() == '') {
+					$("#first-click-instructions-"+task_num)[0].focus();
+					layer.tips('This field cannot be empty!', "#first-click-instructions-"+task_num);
+					is_end_function = 1;
+					return false;
+				} else {
+					var instructions = $("#first-click-instructions-"+task_num).val();
+				}
+
+				if($("first-click-upload-image-"+task_num).val() == '') {
+					$("#first-click-upload-image-label-"+task_num)[0].focus();
+					layer.tips('You need to upload an image!', "#first-click-upload-image-label-"+task_num);
+					is_end_function = 1;
+					return false;
+				} else {
+					var img_filename = getFileName($("#first-click-upload-image-"+task_num).val());
+					var img_ext = img_filename.split('.').slice(-1)[0];
+					var screenshot = '.\\screenshots\\' + 'task_' + real_task_num + '_screenshot_1.' + img_ext;
+				}
+
+				var is_end_loop_1 = 0;
+				$("#count-question-div-"+task_num).find('div.form-group').each(function(index, el) {
+					var question_dict = {
+						'ques_num': 1,
+						'ques_type': 'short_text',
+						'ques_description': '',
+						'ques_options': []
+					}
+					var real_ques_num = index + 1;
+					var ques_num = $(el).attr('id').split('-').slice(-1)[0];
+					var ques_type = $(el).attr('id').split(task_type+'-').join('').split('-'+task_num+'-'+ques_num).join('');
+					var ques_options = [];
+					if($("#"+task_type+"-question-"+task_num+"-"+ques_num).val() == '') {
+						$("#"+task_type+"-question-"+task_num+"-"+ques_num)[0].focus();
+						layer.tips('This field cannot be empty!', "#"+task_type+"-question-"+task_num+"-"+ques_num);
+						is_end_function = 1;
+						is_end_loop_1 = 1;
+						return false;
+					} else {
+						var ques_description = $("#"+task_type+"-question-"+task_num+"-"+ques_num).val();
+					}
+
+					if(ques_type == 'radio' || ques_type == 'checkbox') {
+						var is_end_loop_2 = 0;
+						$(el).find('input').each(function(index, ele) {
+							if($(ele).attr('id') != task_type+"-question-"+task_num+"-"+ques_num) {
+								if($(ele).val() == '') {
+									$(ele)[0].focus();
+									layer.tips('This field cannot be empty!', '#' + $(ele).attr('id'));
+									is_end_function = 1;
+									is_end_loop_1 = 1;
+									is_end_loop_2 = 1;
+									return false;
+								} else {
+									ques_options.push($(ele).val());
+								}
+							}
+						});
+						if(is_end_loop_2 == 1) {return false;}
+					}
+
+					question_dict.ques_num = real_ques_num;
+					question_dict.ques_type = ques_type;
+					question_dict.ques_description = ques_description;
+					question_dict.ques_options = ques_options;
+					first_click_task_dict.questions.push(question_dict);
+				});
+				if(is_end_loop_1 == 1) {return false;}
+
+				first_click_task_dict.task_num = real_task_num;
+				first_click_task_dict.task_type = task_type;
+				first_click_task_dict.instructions = instructions;
+				first_click_task_dict.screenshot = screenshot;
+				json_dict.tasks.push(first_click_task_dict);
+			}
+
+			// other task type
+
+		});
+		if(is_end_function == 1) {return false;}
+		// console.log(json_dict);
+	}
+
+	function navbarJump(which) {
+		var li_id = $(which).parent().attr('id');
+		var div_id = li_id.split('-li').join('');
+		var t = $("#" + div_id).offset().top;
+		console.log(t+200);
+		$(window).scrollTop(t+200);
+	}
 </script>
