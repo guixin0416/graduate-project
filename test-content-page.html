@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HCI Coursework Test Platform</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/layer.js"></script>
+</head>
+<body>
+	<div class="container" id="start-page-div" style="">
+		<div class="row" style="margin-top: 100px">
+			<h3><strong>Hello there! Welcome to HCI CW1 evaluation.</strong></h3>
+			<br>
+			<p style="font-size: 20px">You've been invited to participate in a short test.</p>
+		</div>
+		<br>
+		<div class="row">
+			<button id="btn-start" class="btn btn-primary btn-lg" onclick="loadContentPage(this)"><strong>Start</strong></button>
+		</div>
+	</div>
+
+	<div class="container" id="first-click-page-div" style="display: none">
+		<div class="row">
+			<p class="text-center" id="first-click-instruction" style="font-size: 20px; font-family: Calibri; margin-top: 20px;"></p>
+		</div>
+		<div class="row">
+			<p class="text-center" style="font-size: 18px; font-family: Calibri; color: slategray; margin-top: 5px">Click on the image to carry out the instructions or complete the set task</p>
+		</div>
+		<div class="row">
+			<button class="btn btn-primary center-block" id="btn-show-image" style="font-size: 18px; font-family: Calibri; margin-top: 5px" onclick="showImageClick(this)">Click to view image</button>
+		</div>
+		<div class="row">
+			<div style="background-color: whitesmoke; margin-top: 20px">
+				<img src="img/My_albums_1.jpg" class="center-block img-responsive" id="test-img" style="visibility: hidden" alt="Sorry, there is an error in the image display.">
+			</div>
+		</div>
+	</div>
+
+    <div id="text-ques-div" class="form-group center-block" style="display: none">
+		<label for="text" class="control-label" style="font-size: 18px; color: slategray; font-family: Calibri">Question 1: Why you chose to click on where you did?</label>
+		<textarea class="form-control" id="text" name="text" rows="5"></textarea>
+	</div>
+
+	<div id="radio-ques-div" class="radio center-block" style="display: none">
+		<p class="control-label" style="font-size: 18px; color: slategray; font-family: Calibri; font-weight: 700">Question 2: How do you feel about this design?</p>
+		<div class="row" style="margin-left: 20px">
+			<label style="font-size: 18px; color: slategray; font-family: Calibri"><input type="radio" id="radioOption1" name="radioOption" value="1"><span>Good</span></label>
+		</div>
+		<div class="row" style="margin-left: 20px">
+			<label style="font-size: 18px; color: slategray; font-family: Calibri"><input type="radio" id="radioOption2" name="radioOption" value="2" ><span>Just so</span></label>
+		</div>					
+		<!-- <div class="row" style="margin-left: 20px">
+			<label style="font-size: 18px; color: slategray; font-family: Calibri"><input type="radio" id="radioOption3" name="radioOption" value="3">Bad</label>
+		</div> -->					
+	</div>
+
+	<div id="checkbox-ques-div" class="checkbox center-block" style="display: none">
+		<p class="control-label" style="font-size: 18px; color: slategray; font-family: Calibri; font-weight: 700">Question 3: How do you feel about this design?</p>
+		<div class="row" style="margin-left: 20px">
+			<label style="font-size: 18px; color: slategray; font-family: Calibri"><input type="checkbox" id="checkboxOption1" name="checkboxOption" value="1"><span>Good</span></label>
+		</div>
+		<div class="row" style="margin-left: 20px">
+			<label style="font-size: 18px; color: slategray; font-family: Calibri"><input type="checkbox" id="checkboxOption2" name="checkboxOption" value="2" ><span>Just so</span></label>
+		</div>					
+		<!-- <div class="row" style="margin-left: 20px">
+			<label style="font-size: 18px; color: slategray; font-family: Calibri"><input type="checkbox" id="checkboxOption3" name="checkboxOption" value="3">Bad</label>
+		</div> -->					
+	</div>
+
+	<!-- <div style="display: none"> -->
+		<form action="#" method="post" id="questions-form" accept-charset="utf-8" style="margin-left: 20px; margin-right: 20px; margin-top: 20px; display: none">
+
+		</form>
+	<!-- </div> -->
+
+	<div class="container" id="finish-page-div" style="display: none">
+		<div class="row" style="margin-top: 30px">
+			<h3 class="text-center"><strong>Thank you very much for your participant!</strong></h3>
+		</div>
+		<div class="row" style="margin-top: 10px">
+			<h4 class="text-center">Your test results will be very helpful to us.</h4>
+		</div>
+	</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    var count_task = 0;
+    var json_data = {
+	    "test_details": {
+	        "test_name": "test01"
+	    },
+	    "welcome": {
+	        "title": "Hello there! Welcome to HCI CW1 evaluation.",
+	        "message": "You've been invited to participate in a short test.",
+	        "start_btn_text": "Start"
+	    },
+	    "thank_you": {
+	        "title": "Thank you very much for your participant!",
+	        "message": "Your test results will be very helpful to us."
+	    },
+	    "tasks": [
+	        {
+	            "task_num": 1,
+	            "task_type": "first-click",
+	            "instructions": "Where would you click to create a new album?",
+	            "screenshot": ".\\uploads\\task_1_screenshot_1.jpg",
+	            "questions": [
+	                {
+	                    "ques_num": 1,
+	                    "ques_type": "short-text",
+	                    "ques_description": "Why you click where you did?",
+	                    "ques_options": []
+	                },
+	                {
+	                    "ques_num": 2,
+	                    "ques_type": "radio",
+	                    "ques_description": "How do you feel about this design?",
+	                    "ques_options": [
+	                        "Good",
+	                        "Just so",
+	                        "Bad"
+	                    ]
+	                }
+	            ]
+	        }
+	    ]
+	};
+    var tasks = json_data['tasks'];
+    var num_of_tasks = tasks.length;
+    var thank_you = json_data['thank_you'];
+    var test_result_dict = new Array();
+
+    function submitFirstClickResults() {
+        var first_click_result_dict = {
+            'task_num': 1,
+            'task_type': 'first-click',
+            'click_coordinate': [0, 0],
+            'duration': 0,
+            'questions': []
+        };
+        first_click_result_dict['task_num'] = count_task;
+        first_click_result_dict['click_coordinate'][0] = offsetx;
+        first_click_result_dict['click_coordinate'][1] = offsety;
+        first_click_result_dict['duration'] = parseInt(endTime - startTime)/1000;
+        $("#questions-form").children().each(function(index, el) {
+        	var question_result_dict = {
+                'ques_num': 1,
+                'ques_type': '',
+                'ques_text_result': '',
+                'ques_option_result': []
+            };
+        	question_result_dict['ques_num'] = index + 1;
+        	question_result_dict['ques_type'] = $(this).attr('id').split('-')[0];
+        	if(question_result_dict['ques_type'] == 'text') {
+        	    question_result_dict['ques_text_result'] = $(this).find('textarea').val();
+            } else if(question_result_dict['ques_type'] == 'radio' || question_result_dict['ques_type'] == 'checkbox') {
+        	    $(this).find('input').each(function(i, e) {
+        	        if($(this).get(0).checked) {question_result_dict['ques_option_result'].push($(this).attr('value'));}
+                });
+            }
+        	first_click_result_dict['questions'].push(question_result_dict);
+        });
+        test_result_dict.push(first_click_result_dict);
+    }
+
+	function loadContentPage(which) {
+	    // $("#start-page-div").css('display', 'none');
+        $(which).closest('div.container').css('display', 'none');
+        count_task ++;
+        if(count_task <= num_of_tasks) {
+        	if(tasks[count_task-1]['task_type'] == 'first-click') {
+	            $("#first-click-page-div").css('display', '');
+	            $("#btn-show-image").css('display', '');
+	            $("#test-img").css('visibility', 'hidden');
+	            $("#first-click-instruction").html('<strong>'+tasks[count_task-1]["instructions"]+'</strong>');
+	      //       var image_path = {'image_path': tasks[count_task-1]['screenshot']};
+	      //       $.ajax({
+	    		// 	url: '/getimage/',
+	    		// 	method: 'POST',
+	    		// 	data: image_path,
+	    		// 	success: function(response) {
+	    		// 	    $("#test-img").attr('src', 'data:;base64,' + response);
+	    		// 	}
+	    		// });
+	        }
+        } else {
+        	$("#finish-page-div").css('display', '');
+        	$("#finish-page-div").find('h3').html('<strong>'+thank_you['title']+'</strong>');
+        	$("#finish-page-div").find('h4').html(thank_you['message']);
+        	// $.ajax({
+         //        type: 'POST',
+         //        url: '/takingtest/',
+         //        data: JSON.stringify(test_result_dict),
+         //        dataType: 'json',
+         //        contentType : "application/json",
+         //        success: function (response) {
+         //            console.log('JSON成功');
+         //        }
+         //    });
+        }        
+	}
+
+	function getDateTime() {
+	    var myDate = new Date;
+        var year = myDate.getFullYear(); //获取当前年
+        var mon = myDate.getMonth() + 1; //获取当前月
+        var date = myDate.getDate(); //获取当前日
+        var h = myDate.getHours();//获取当前小时数(0-23)
+        var m = myDate.getMinutes();//获取当前分钟数(0-59)
+        var s = myDate.getSeconds();//获取当前秒
+        var whole_time = year+'/'+mon+'/'+date+' '+h+':'+m+':'+s;
+        var time_now = new Date(whole_time);
+        return time_now;
+    }
+
+    var startTime, endTime;
+	function showImageClick(which) {
+        $("#test-img").css('visibility', 'visible');
+		$(which).css('display', 'none');
+		startTime = getDateTime();
+    }
+
+    var offsetx = 0;
+	var offsety = 0;
+    $("#test-img").click(function(e) {
+	    $("div.click-dot").remove();
+        $("div.confirm-cancel-click").remove();
+
+        $("#test-img").css('filter', 'brightness(70%)');
+
+        var posx = e.pageX;
+        var posy = e.pageY;
+        offsetx = e.offsetX;
+        offsety = e.offsetY;
+
+        var dot = document.createElement("div");
+        dot.className = "click-dot";
+        dot.style.left = (posx - 5) + "px";
+        dot.style.top = (posy - 5) + "px";
+        dot.style.width = "10px";
+        dot.style.height = "10px";
+        document.body.appendChild(dot);
+        $("div.click-dot").css({
+            "position": "absolute",
+            "z-index": "9",
+            "border-radius": '50%',
+            "background-color": '#108CDE',
+            "border": '2px solid white'
+        });
+
+        var modal = document.createElement("div");
+        modal.className = "confirm-cancel-click";
+        modal.style.left = (posx + 5) + "px";
+        modal.style.top = (posy + 5) + "px";
+        modal.style.width = "130px";
+        document.body.appendChild(modal);
+        $("div.confirm-cancel-click").css({
+            "position": "absolute",
+            "z-index": "9",
+            "border-radius": '5px',
+            "background-color": 'white'
+        });
+        $("div.confirm-cancel-click").append('<button id="btn-confirm" class="btn btn-primary" style="font-size: 16px; font-family: Calibri; margin: 10px" onclick="confirmClick()">Confirm click</button>');
+        $("div.confirm-cancel-click").append('<button id="btn-cancel" class="btn btn-default center-block" style="font-size: 14px; font-family: Calibri; border: none; color: #108CDE; margin-top: -10px" onclick="cancelClick()">cancel</button>');
+    });
+
+	function cancelClick() {
+		$("div.click-dot").remove();
+		$("div.confirm-cancel-click").remove();
+		$("#test-img").css('filter', 'brightness(100%)');
+	}
+
+	function confirmClick() {
+	    endTime = getDateTime();
+		var questions = tasks[count_task-1]['questions'];
+		if(questions.length == 0) {
+		    $("div.click-dot").remove();
+            $("div.confirm-cancel-click").remove();
+            loadContentPage($("#first-click-page-div"));
+            return false;
+        }
+		for(var i=0; i<questions.length; i++) {
+			if(questions[i]['ques_type'] == 'short-text') {
+				var text_ques_div = $("#text-ques-div");
+				var duplicate = text_ques_div.clone(true);
+				duplicate.css('display', '');
+				duplicate.attr('id', 'text-ques-div-'+(i+1));
+				duplicate.find('label').attr('for', 'text'+(i+1));
+				duplicate.find('textarea').attr('id', 'text'+(i+1));
+				duplicate.find('label').html(questions[i]['ques_num'] + '. ' + questions[i]['ques_description']);
+			} else if(questions[i]['ques_type'] == 'radio') {
+				var radio_ques_div = $("#radio-ques-div");
+				var duplicate = radio_ques_div.clone(true);
+				duplicate.css('display', '');
+				duplicate.attr('id', 'radio-ques-div-'+(i+1));
+				duplicate.find('p').html(questions[i]['ques_num'] + '. ' + questions[i]['ques_description']);
+				var options = questions[i]['ques_options'];
+				var option_div = duplicate.find("#radioOption1").closest('div.row');
+                var duplicate_option = option_div.clone(true);
+				for(var j=0; j<options.length; j++) {
+					if(j == 0) {
+						duplicate.find("#radioOption1").closest('label').find('span').html(options[j]);
+						duplicate.find("#radioOption1").attr('id', 'radioOption'+(i+1)+'-'+(j+1));
+					}
+					else if(j == 1) {
+						duplicate.find("#radioOption2").closest('label').find('span').html(options[j]);
+						duplicate.find("#radioOption2").attr('id', 'radioOption'+(i+1)+'-'+(j+1));
+					} else {
+						duplicate_option.find('input').attr({
+							'id': 'radioOption' + (i+1) + '-' + (j+1),
+							'value': '' + (j+1)
+						});
+						duplicate_option.find('span').html(options[j]);
+						duplicate.append(duplicate_option);
+					}					
+				}
+			} else if(questions[i]['ques_type'] == 'checkbox') {
+				var checkbox_ques_div = $("#checkbox-ques-div");
+				var duplicate = checkbox_ques_div.clone(true);
+				duplicate.css('display', '');
+				duplicate.attr('id', 'checkbox-ques-div-'+(i+1));
+				duplicate.find('p').html(questions[i]['ques_num'] + '. ' + questions[i]['ques_description']);
+				var options = questions[i]['ques_options'];
+				var option_div = duplicate.find("#checkboxOption1").closest('div.row');
+                var duplicate_option = option_div.clone(true);
+				for(var j=0; j<options.length; j++) {
+					if(j == 0) {
+						duplicate.find("#checkboxOption1").closest('label').find('span').html(options[j]);
+						duplicate.find("#checkboxOption1").attr('id', 'checkboxOption'+(i+1)+'-'+(j+1));
+					}
+					else if(j == 1) {
+						duplicate.find("#checkboxOption2").closest('label').find('span').html(options[j]);
+						duplicate.find("#checkboxOption2").attr('id', 'checkboxOption'+(i+1)+'-'+(j+1));
+					} else {
+						duplicate_option.find('input').attr({
+							'id': 'checkboxOption' + (i+1) + '-' + (j+1),
+							'value': '' + (j+1)
+						});
+						duplicate_option.find('span').html(options[j]);
+						duplicate.append(duplicate_option);
+					}					
+				}
+			}
+			$("#questions-form").append(duplicate);
+			// var device_height = $(window).height();
+			// var device_width = $(window).width();
+		}
+		
+		layer.open({
+			  type: 1,
+			  skin: 'layui-layer-rim',
+			  title: 'Follow-up questions',
+			  area: ['800px', '600px'],
+			  closeBtn: 0,
+			  content: $("#questions-form"),
+			  btn: ['Confirm and Submit'],
+			  yes: function (index, layero) {
+                  // submitFirstClickResults();
+                  // console.log(test_result_dict);
+                  $("div.click-dot").remove();
+                  $("div.confirm-cancel-click").remove();
+                  $("#questions-form").empty();
+                  loadContentPage($("#first-click-page-div"));
+                  layer.close(index);
+			  }
+        });
+	}
+</script>
