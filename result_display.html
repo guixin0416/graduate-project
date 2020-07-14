@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HCI Coursework Test Platform</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/layer.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/heatmap.js/2.0.2/heatmap.js"></script>
+    <style>
+        .hotzone {
+            border: 1px solid blue;
+            /*background: #5a72f8;*/
+            background-color:rgba(90,114,248,.3);
+            position: absolute;
+            width: 0;
+            height: 0;
+            /*opacity: 0.1;*/
+            z-index: 9;
+        }
+    </style>
+</head>
+<body style="background-color: whitesmoke">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="font-family: Calibri; background-color: white">
+            <div class="container-fluid" style="border-bottom: 1px solid silver; box-shadow: whitesmoke 0px 0px 1px 1px; font-size: 18px">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" style="height: 60px; line-height: 60px; padding-top: 0"></a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" style="height: 65px; line-height: 65px; padding-top: 0; color: black"><span class="glyphicon glyphicon-home"></span>&nbsp Homepage</a></li>
+                        <li><a href="#" style="height: 65px; line-height: 65px; padding-top: 0; color: black"><span class="glyphicon glyphicon-question-sign"></span>&nbsp Help</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 65px; line-height: 65px; padding-top: 0; color: black">
+                                <span class="glyphicon glyphicon-user"></span>&nbsp My Account
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu" style="font-size: 16px">
+                                <li><a href="#" style="color: slategray">Profile</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" style="color: slategray">Terms & legal documents</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" style="color: slategray"><span class="glyphicon glyphicon-log-out"></span> &nbsp Sign out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container-fluid" style="border-bottom: 1px solid whitesmoke; box-shadow: silver 0px 0px 1px 1px; font-size: 17px">
+                <div>
+                    <p id="test-name" class="navbar-text" style="color: #000; font-size: 18px; font-weight: 600">Test Name</p>
+                </div>
+            </div>
+    </nav>
+
+	<div class="container" style="margin-top: 140px">
+        <div class="row" style="background-color: white; border: 1px solid gainsboro; border-radius: 3px">
+            <div style="margin-left: 50px; margin-top: 30px; margin-bottom: 30px;">
+                <p style="font-weight: 600; font-size: 16px; color: slategray">Total participants: <p id="total-participant" style="font-size: 20px; color: dimgrey">50</p></p>                
+            </div>
+        </div>
+
+        <div class="row first-click-div" id="first-click-div" style="margin-top: 30px; margin-bottom: 15px; display: none">
+            <div id="first-click-child-div" style="background-color: white; border: 1px solid gainsboro; border-radius: 3px; font-family: Calibri">
+                <div class="row" style="margin-top: 30px; margin-left: 20px; margin-right: 20px; margin-bottom: 10px">
+                    <div class="col-md-6">
+                        <p id="first-click-title" style="font-size: 16px; color: #555555;"><i class="fa fa-mouse-pointer" style="font-size: 14px"></i>&nbsp 1. First Click</p>
+                    </div>
+                </div>
+                <div class="row" style="margin-left: 30px; margin-right: 30px; margin-bottom: 0px">
+                    <p id="first-click-instruction" style="font-size: 18px; font-weight: 600">Where would you click to create a new album?</p>
+                </div>
+                <!-- <div class="row form-inline" style="margin-left: 30px; margin-right: 30px; margin-bottom: 20px">
+                    <button class="btn btn-default" style="border: none; color: #219DEF; font-size: 16px" disabled="disabled"><i class="fa fa-picture-o"></i> Image</button>
+                    <button class="btn btn-default" style="border: none; color: grey; font-size: 16px"><i class="fa fa-free-code-camp"></i> Heatmap</button>
+                    <button class="btn btn-default" style="border: none; color: grey; font-size: 16px"><i class="fa fa-mouse-pointer"></i> Clicks</button>
+                </div> -->
+                <ul id="" class="nav nav-tabs" style="margin-left: 30px; margin-right: 30px; margin-bottom: 20px">
+                    <li class="active"><a href="#ori-image" data-toggle="tab" style="font-size: 16px"><i class="fa fa-picture-o"></i> Image</a></li>
+                    <li><a href="#heatmap-image" data-toggle="tab" style="font-size: 16px"><i class="fa fa-free-code-camp"></i> Heatmap</a></li>
+                    <li><a href="#click-image" data-toggle="tab" style="font-size: 16px"><i class="fa fa-mouse-pointer"></i> Clicks</a></li>
+                </ul>
+                <div id="" class="tab-content">
+                    <div class="tab-pane in active" id="ori-image">
+                        <div class="row" style="margin-left: 20px; margin-right: 20px; margin-bottom: 30px">
+                            <div style="background-color: whitesmoke; padding: 10px">
+                                <div id="heatmap" class="center-block"><img src="img/My_albums_1.jpg" id="image" style="filter: brightness(70%)" alt="Image display error"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="heatmap-image">
+                        <div class="row" style="margin-left: 20px; margin-right: 20px; margin-bottom: 30px">
+                            <div style="background-color: whitesmoke; padding: 10px">
+                                <div id="heatmap-canvas" class="center-block"><img src="img/My_albums_1.jpg" id="heat-img" style="filter: brightness(70%)" alt="Image display error"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="click-image">
+                        <div class="row" style="margin-left: 20px; margin-right: 20px; margin-bottom: 30px">
+                            <div style="background-color: whitesmoke; padding: 10px">
+                                <div id="click-canvas" class="center-block"><img src="img/My_albums_1.jpg" id="click-img" style="filter: brightness(70%)" alt="Image display error"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <!--  <div class="row" style="margin-left: 20px; margin-right: 20px; margin-bottom: 30px">
+                    <div style="background-color: whitesmoke; padding: 10px">
+                        <div id="heatmap" class="center-block"><img src="" id="image" style="filter: brightness(70%)" alt="Image display error"></div>
+                    </div>                    
+                </div> -->
+                <div class="row" id="hotzone-results-area" style="margin-left: 20px; margin-right: 20px; margin-bottom: 10px">
+                    <div class="row" id="first-click-hotzone-result" style="margin-left: 10px; margin-right: 10px; margin-bottom: 20px; border: 1px solid gainsboro; border-radius: 3px; padding-left: 10px; padding-right: 10px; padding-top: 20px; padding-bottom: 10px">
+                        <div class="row">
+                            <div class="col-md-5">
+                               <p id="heat-title" style="font-size: 18px; color: slategray; margin-left: 10px">Other Area</p>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="col-md-4">
+                                    <p style="font-size: 16px; color: slategray">Average duration: <span id="heat-dur">5</span>s</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p style="font-size: 16px; color: #219DEF; font-weight: 600">Percent: <span id="heat-percent">100</span>%</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p style="font-size: 16px; color: slategray"><i class="fa fa-user-circle"></i> Number: <span id="heat-num">50</span></p>
+                                </div>
+                            </div>                       
+                        </div>
+                        <div>
+                            <div class="row" id="heat-bar" style="margin: 0px; width: 100%; height: 10px; background-color: orange"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order" id="follow-up-ques">
+                    <span style="white-space:pre">   </span><span class="line2"></span>
+                    <span style="white-space:pre">   </span><span class="txt" style="font-weight: 500; font-size: 16px; color: slategray">Follow-up questions</span>
+                    <span style="white-space:pre">   </span><span class="line2"></span>
+                </div>
+                <div class="row" id="text-ques-div" style="margin-left: 20px; margin-right: 20px; margin-bottom: 30px">
+                    <div class="row" style="margin-left: 10px; margin-right: 10px; margin-bottom: 10px">
+                        <p id="text-title" style="font-size: 16px; color: slategray">1. Short text question</p>
+                    </div>
+                    <div class="row" style="margin-left: 10px; margin-right: 10px; margin-bottom: 10px">
+                        <p id="text-description" style="font-size: 18px; font-weight: 600">Why you click where you did?</p>
+                    </div>
+                    <div class="row" id="text-answers-area" style="margin-left: 10px; margin-right: 10px; margin-bottom: 10px; border: 1px solid gainsboro; height: 400px; border-radius: 3px; padding: 10px; background-color: whitesmoke">
+                        <div id="text-answer" style="border: 1px solid gainsboro; font-size: 18px; color: slategray; padding: 10px; background-color: white; border-radius: 3px; margin-bottom: 10px"></div>
+                    </div>
+                </div>
+                <span id="order-line" style="display: inline-block; width: 100%; border-top: 1px solid #B8CBCF; margin-top: 10px; margin-bottom: 20px;"></span>
+                <div class="row" id="radio-check-ques-div" style="margin-left: 20px; margin-right: 20px; margin-bottom: 30px">
+                    <div class="row" style="margin-left: 10px; margin-right: 10px; margin-bottom: 10px">
+                        <p id="radio-check-title" class="" style="font-size: 16px; color: slategray">2. Radio buttons question</p>
+                    </div>
+                    <div class="row" style="margin-left: 10px; margin-right: 10px; margin-bottom: 10px">
+                        <p id="radio-check-description" style="font-size: 18px; font-weight: 600">How do you feel about this design?</p>
+                    </div>
+                    <div id="options-area">
+                        <div class="row" id="option-result-div" style="margin-left: 10px; margin-right: 10px; margin-bottom: 20px; border: 1px solid gainsboro; border-radius: 3px; padding-left: 10px; padding-right: 10px; padding-top: 20px; padding-bottom: 10px">
+                            <div class="row">
+                                <div class="col-md-7">
+                                   <p id="option-title" style="font-size: 18px; color: slategray; margin-left: 10px">Good</p>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="col-md-6">
+                                        <p style="font-size: 16px; color: #219DEF; font-weight: 600">Percent: <span id="option-percent">80</span>%</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p style="font-size: 16px; color: slategray"><i class="fa fa-user-circle"></i> Number: <span id="option-num">40</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="row" id="option-bar" style="margin: 0px; width: 80%; height: 10px; background-color: orange"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+    var test_name = 'Test Name';
+    var tasks_info = [
+        {
+            "task_num": 1,
+            "task_type": "first-click",
+            "instructions": "Where would you click to create a new album?",
+            "screenshot": ".\\uploads\\task_1_screenshot_1.jpg",
+            "questions": [
+                {
+                    "ques_num": 1,
+                    "ques_type": "short-text",
+                    "ques_description": "Why you click where you did?",
+                    "ques_options": []
+                },
+                {
+                    "ques_num": 2,
+                    "ques_type": "radio",
+                    "ques_description": "How do you feel about this design?",
+                    "ques_options": [
+                        "Good",
+                        "Just so",
+                        "Bad"
+                    ]
+                }
+            ]
+        }
+    ];
+    var result_list = [
+        [
+            {
+                "task_num": 1,
+                "task_type": "first-click",
+                "click_coordinate": [
+                    307,
+                    244
+                ],
+                "duration": 3,
+                "questions": [
+                    {
+                        "ques_num": 1,
+                        "ques_type": "text",
+                        "ques_text_result": "Because it says \"ADD ALBUM\".",
+                        "ques_option_result": []
+                    },
+                    {
+                        "ques_num": 2,
+                        "ques_type": "radio",
+                        "ques_text_result": "",
+                        "ques_option_result": [
+                            "1"
+                        ]
+                    }
+                ]
+            }
+        ],
+        [
+            {
+                "task_num": 1,
+                "task_type": "first-click",
+                "click_coordinate": [
+                    309,
+                    245
+                ],
+                "duration": 5,
+                "questions": [
+                    {
+                        "ques_num": 1,
+                        "ques_type": "text",
+                        "ques_text_result": "Because the \"ADD ALBUM\" is highlighted.",
+                        "ques_option_result": []
+                    },
+                    {
+                        "ques_num": 2,
+                        "ques_type": "radio",
+                        "ques_text_result": "",
+                        "ques_option_result": [
+                            "2"
+                        ]
+                    }
+                ]
+            }
+        ]
+    ];
+    $("#test-name").attr('id', test_name);
+    $("#total-participant").html('' + result_list.length);
+    var coord_data_dict = new Object();
+
+    for(var i=0; i<tasks_info.length; i++) {
+        if(tasks_info[i]['task_type'] == 'first-click') {
+            var dataPoints = {
+                max: 100,
+                min: 0,
+                data: []
+            };
+            dataPoints['max'] = result_list.length;
+            for(var par=0; par<result_list.length; par++) {
+                var dataPoint = {
+                    x: 0,
+                    y: 0,
+                    value: 1,
+                    dur: 0,
+                };
+                dataPoint['x'] = result_list[par][i]['click_coordinate'][0];
+                dataPoint['y'] = result_list[par][i]['click_coordinate'][1];
+                dataPoint['dur'] = result_list[par][i]['duration'];
+                dataPoints['data'].push(dataPoint);
+            }
+            coord_data_dict[''+(i+1)] = dataPoints;
+
+            var first_click_div = $("#first-click-div");
+            var duplicate = first_click_div.clone(true);
+            duplicate.attr('id', 'first-click-div-' + (i+1));
+            duplicate.css('display', '');
+            duplicate.find('#first-click-child-div').attr('id', 'first-click-child-div-' + (i+1));
+            duplicate.find('#follow-up-ques').remove();
+            duplicate.find('#text-ques-div').remove();
+            duplicate.find('#order-line').remove();
+            duplicate.find('#radio-check-ques-div').remove();
+            duplicate.find('#first-click-title').attr('id', 'first-click-title-' + (i+1));
+            duplicate.find('#first-click-title').html('&nbsp' + (i+1) + '. First Click');
+            duplicate.find('#first-click-instruction').html(tasks_info[i]['instructions']);
+            duplicate.find("a[href='#ori-image']").attr('href', '#ori-image-' + (i+1));
+            duplicate.find("a[href='#heatmap-image']").attr('href', '#heatmap-image-' + (i+1));
+            duplicate.find("a[href='#click-image']").attr('href', '#click-image-' + (i+1));
+            duplicate.find('#ori-image').attr('id', 'ori-image-' + (i+1));
+            duplicate.find('#heatmap').attr('id', 'heatmap-' + (i+1));
+            duplicate.find('#image').attr('id', 'image-' + (i+1));
+            duplicate.find('#heatmap-image').attr('id', 'heatmap-image-' + (i+1));
+            duplicate.find('#heatmap-canvas').attr('id', 'heatmap-canvas-' + (i+1));
+            duplicate.find('#heat-img').attr('id', 'heat-img-' + (i+1));
+            duplicate.find('#click-image').attr('id', 'click-image-' + (i+1));
+            duplicate.find('#click-canvas').attr('id', 'click-canvas-' + (i+1));
+            duplicate.find('#click-img').attr('id', 'click-img-' + (i+1));
+            duplicate.find('#hotzone-results-area').attr('id', 'hotzone-results-area-' + (i+1));
+            duplicate.find('#first-click-hotzone-result').attr('id', 'first-click-hotzone-result-' + (i+1) + '-1');
+            duplicate.find('#heat-title').attr('id', 'heat-title-' + (i+1) + '-1');
+            var total_dur_sum = 0;
+            for(var dp=0; dp<coord_data_dict[''+(i+1)]['data'].length; dp++) {
+                total_dur_sum = total_dur_sum + coord_data_dict[''+(i+1)]['data'][dp]['dur'];
+            }
+            var total_dur_ave = (total_dur_sum/coord_data_dict[''+(i+1)]['data'].length).toFixed(1);
+            duplicate.find('#heat-dur').html(total_dur_ave);
+            duplicate.find('#heat-dur').attr('id', 'heat-dur-' + (i+1) + '-1');
+            duplicate.find('#heat-percent').attr('id', 'heat-percent-' + (i+1) + '-1');
+            duplicate.find('#heat-num').html('' + result_list.length);
+            duplicate.find('#heat-num').attr('id', 'heat-num-' + (i+1) + '-1');
+            duplicate.find('#heat-bar').attr('id', 'heat-bar-' + (i+1) + '-1');
+
+            if(tasks_info[i]['questions'].length > 0) {
+                var questions = tasks_info[i]['questions'];
+                var duplicate_followupques = $("#follow-up-ques").clone(true);
+                duplicate.find('#first-click-child-div-' + (i+1)).append(duplicate_followupques);
+                var duplicate_orderline = $("#order-line").clone(true);
+                for(var j=0; j<questions.length; j++) {
+                    if(questions[j]['ques_type'] == "short-text") {
+                        var duplicate_text_ques_div = $("#text-ques-div").clone(true);
+                        duplicate_text_ques_div.attr('id', 'text-ques-div-'+(i+1)+'-'+(j+1));
+                        duplicate_text_ques_div.find('#text-title').html((j+1) + '. Short text question');
+                        duplicate_text_ques_div.find('#text-title').attr('id', 'text-title-'+(i+1)+'-'+(j+1));
+                        duplicate_text_ques_div.find('#text-description').html(questions[j]['ques_description']);
+                        duplicate_text_ques_div.find('#text-description').attr('id', 'text-description-'+(i+1)+'-'+(j+1));
+                        duplicate_text_ques_div.find('#text-answers-area').attr('id', 'text-answers-area-'+(i+1)+'-'+(j+1));
+                        duplicate_text_ques_div.find('#text-answer').remove();
+                        for(var k=0; k<result_list.length; k++) {
+                            var duplicate_text_answer = $("#text-answer").clone(true);
+                            duplicate_text_answer.attr('id', '');
+                            duplicate_text_answer.html(result_list[k][i]['questions'][j]['ques_text_result']);
+                            duplicate_text_ques_div.find('#text-answers-area-'+(i+1)+'-'+(j+1)).append(duplicate_text_answer);
+                        }
+                        duplicate.find('#first-click-child-div-' + (i+1)).append(duplicate_text_ques_div);
+                    } else if(questions[j]['ques_type'] == "radio" || questions[j]['ques_type'] == "checkbox") {
+                        var duplicate_radiocheck_ques_div = $("#radio-check-ques-div").clone(true);
+                        duplicate_radiocheck_ques_div.attr('id', 'radio-check-ques-div-'+(i+1)+'-'+(j+1));
+                        if(questions[j]['ques_type'] == "radio") {duplicate_radiocheck_ques_div.find('#radio-check-title').html((j+1) + '. Radio buttons question');}
+                        else if(questions[j]['ques_type'] == "checkbox") {duplicate_radiocheck_ques_div.find('#radio-check-title').html((j+1) + '. Check boxes question');}
+                        duplicate_radiocheck_ques_div.find('#radio-check-title').attr('id', 'radio-check-title-'+(i+1)+'-'+(j+1));
+                        duplicate_radiocheck_ques_div.find('#radio-check-description').html(questions[j]['ques_description']);
+                        duplicate_radiocheck_ques_div.find('#radio-check-description').attr('id', 'radio-check-description-'+(i+1)+'-'+(j+1));
+                        duplicate_radiocheck_ques_div.find('#options-area').attr('id', 'options-area-'+(i+1)+'-'+(j+1));
+                        duplicate_radiocheck_ques_div.find('#option-result-div').remove();
+                        var option_num = questions[j]['ques_options'].length;
+                        var option_results_dict = new Object();
+                        var total_answer_num = 0;
+                        for(var op=0; op<option_num; op++) {
+                            option_results_dict[''+(op+1)] = 0;
+                        }
+                        for(var k=0; k<result_list.length; k++) {
+                            for(var r=0; r<result_list[k][i]['questions'][j]['ques_option_result'].length; r++) {
+                                option_results_dict[result_list[k][i]['questions'][j]['ques_option_result'][r]] ++;
+                                total_answer_num ++;
+                            }
+                        }
+                        // console.log(questions[j]['ques_options']);
+                        for(var opt=0; opt<questions[j]['ques_options'].length; opt++) {
+                            var duplicate_option_result_div = $("#option-result-div").clone(true);
+                            duplicate_option_result_div.attr('id', 'option-result-div-'+(i+1)+'-'+(j+1)+'-'+(opt+1));
+                            duplicate_option_result_div.find('#option-title').html(questions[j]['ques_options'][opt]);
+                            duplicate_option_result_div.find('#option-title').attr('id', 'option-title-'+(i+1)+'-'+(j+1)+'-'+(opt+1));
+                            var percent = Math.round(option_results_dict[''+(opt+1)]/total_answer_num*100);
+                            duplicate_option_result_div.find('#option-percent').html('' + percent);
+                            duplicate_option_result_div.find('#option-percent').attr('id', 'option-percent-'+(i+1)+'-'+(j+1)+'-'+(opt+1));
+                            duplicate_option_result_div.find('#option-num').html('' + option_results_dict[''+(opt+1)]);
+                            duplicate_option_result_div.find('#option-num').attr('id', 'option-num-'+(i+1)+'-'+(j+1)+'-'+(opt+1));
+                            duplicate_option_result_div.find('#option-bar').css('width', percent + '%');
+                            duplicate_option_result_div.find('#option-bar').attr('id', 'option-bar-'+(i+1)+'-'+(j+1)+'-'+(opt+1));
+                            duplicate_radiocheck_ques_div.find('#options-area-'+(i+1)+'-'+(j+1)).append(duplicate_option_result_div);
+                        }
+                        duplicate.find('#first-click-child-div-' + (i+1)).append(duplicate_radiocheck_ques_div);
+                    }
+                }
+            }
+        }
+        $("div.container").append(duplicate);
+    }
+
+    var hotzone_count = 0;
+    var hotzone_dict = new Object();
+    var if_add_hotzone_result = 0;
+    $('body').find("img[id*='image']:visible").each(function(index, el) {
+        var task_num = $(this).attr('id').split('-').slice(-1)[0];
+        var image_path = {'image_path': tasks_info[parseInt(task_num)-1]['screenshot']};
+        // $.ajax({
+        //     url: '/getimage/',
+        //     method: 'POST',
+        //     data: image_path,
+        //     success: function(response) {
+        //         $('#image-'+task_num).attr('src', 'data:;base64,' + response);
+        //         $('#heat-img-'+task_num).attr('src', 'data:;base64,' + response);
+        //         $('#click-img-'+task_num).attr('src', 'data:;base64,' + response);
+        //     }
+        // });
+
+        $('#image-'+task_num).on('load',function(){
+            realWidth = this.width;
+            realHeight = this.height;
+            $('#image-'+task_num).parent().width(realWidth);
+            $('#image-'+task_num).parent().height(realHeight);
+            $('#image-'+task_num).parent().css('position', 'relative');
+
+            $('#image-'+task_num).mousedown(function(e) {
+                // console.log('hhh');
+                var posx = e.pageX;
+                var posy = e.pageY;
+                var offsetx = e.offsetX;
+                var offsety = e.offsetY;
+
+                var real_hotzone_num = $("#hotzone-results-area-"+task_num).find("div[id*='first-click-hotzone-result']").length;
+
+                // let existence = hotzone_dict.filter(item=>{
+                //     if (posx>item.x1 && posx< item.x2 && posy>item.y1 && posy< item.y2) {
+                //         return item;
+                //     }
+                // });
+                // if (existence && existence.length) {
+                //     console.log('This area already have a hotzone.');
+                //     return;
+                // }
+
+                var div = document.createElement("div");
+                div.className = "hotzone";
+                div.id = "hotzone-" + task_num + '-' + (hotzone_count + 1);
+                div.style.left = offsetx + "px";
+                div.style.top = offsety + "px";
+
+                document.getElementById('heatmap-'+task_num).appendChild(div);
+
+                $('#image-'+task_num).mousemove(function(ev) {
+                    /// console.log('a');
+                    var str_id = "#" + div.id;
+                    var x1 = Math.min(ev.offsetX, offsetx);
+                    var y1 = Math.min(ev.offsetY, offsety);
+                    var width = Math.abs(offsetx - ev.offsetX);
+                    var height = Math.abs(offsety - ev.offsetY);
+                    $(str_id).css({
+                        "left": x1 + "px",
+                        "top": y1 + "px",
+                        "width": width + "px",
+                        "height": height + "px"
+                    });
+                    $(document).mouseup(function(eve) {
+                        // console.log('hhh');
+                        $('#image-'+task_num).off("mousemove");
+                        // $(str_id).css("border", "2px solid red");
+                        var hot_zone = {
+                            x1: x1,
+                            y1: y1,
+                            x2: x1 + width,
+                            y2: y1 + height
+                        };
+                        hotzone_dict[div.id] = hot_zone;
+                        // console.log(hotzone_dict);
+                        if($("#hotzone-results-area-"+task_num).find("div[id*='first-click-hotzone-result']").length < (real_hotzone_num+1)) {
+                            hotzone_count ++;
+                            var duplicate_hotzoneresult_div = $("#first-click-hotzone-result").clone(true);
+                            duplicate_hotzoneresult_div.attr('id', 'first-click-hotzone-result-' + task_num + '-' + (hotzone_count+1));
+                            duplicate_hotzoneresult_div.find('#heat-title').html('Area #' + (hotzone_count+1));
+                            duplicate_hotzoneresult_div.find('#heat-title').attr('id', 'heat-title-' + task_num + '-' + (hotzone_count+1));
+                            var count_dp_num = 0;
+                            var count_dur = 0;
+                            for(var dp=0; dp<coord_data_dict[task_num]['data'].length; dp++) {
+                                var datapoint = coord_data_dict[task_num]['data'][dp];
+                                // console.log(datapoint);
+                                if(datapoint['x'] >= hot_zone['x1'] && datapoint['y'] >= hot_zone['y1'] && datapoint['x'] <= hot_zone['x2'] && datapoint['y'] <= hot_zone['y2']) {
+                                    count_dp_num ++;
+                                    count_dur = count_dur + datapoint['dur'];
+                                    // console.log(datapoint);
+                                }
+                            }
+                            var dur_ave = (count_dur/coord_data_dict[task_num]['data'].length).toFixed(1);
+                            duplicate_hotzoneresult_div.find('#heat-dur').html(dur_ave);
+                            duplicate_hotzoneresult_div.find('#heat-dur').attr('id', 'heat-dur-' + task_num + '-' + (hotzone_count+1));
+                            var percent = Math.round(count_dp_num/coord_data_dict[task_num]['data'].length*100);
+                            duplicate_hotzoneresult_div.find('#heat-percent').html('' + percent);
+                            duplicate_hotzoneresult_div.find('#heat-percent').attr('id', 'heat-percent-' + task_num + '-' + (hotzone_count+1));
+                            duplicate_hotzoneresult_div.find('#heat-num').html('' + count_dp_num);
+                            duplicate_hotzoneresult_div.find('#heat-num').attr('id', 'heat-num-' + task_num + '-' + (hotzone_count+1));
+                            duplicate_hotzoneresult_div.find('#heat-bar').css('width', percent + '%');
+                            duplicate_hotzoneresult_div.find('#heat-bar').attr('id', 'heat-bar-' + task_num + '-' + (hotzone_count+1));
+                            duplicate_hotzoneresult_div.insertBefore($("#first-click-hotzone-result-"+task_num+"-1"));
+                            renumberHotzones(task_num);
+                        } else {
+                            // console.log(hot_zone);
+                            var count_dp_num = 0;
+                            var count_dur = 0;
+                            for(var dp=0; dp<coord_data_dict[task_num]['data'].length; dp++) {
+                                var datapoint = coord_data_dict[task_num]['data'][dp];
+                                // console.log(datapoint);
+                                if(datapoint['x'] >= hot_zone['x1'] && datapoint['y'] >= hot_zone['y1'] && datapoint['x'] <= hot_zone['x2'] && datapoint['y'] <= hot_zone['y2']) {
+                                    count_dp_num ++;
+                                    count_dur = count_dur + datapoint['dur'];
+                                    console.log('laile');
+                                }
+                            }
+                            console.log($('first-click-hotzone-result-' + task_num + '-' + (hotzone_count+1)));
+                            var dur_ave = (count_dur/coord_data_dict[task_num]['data'].length).toFixed(1);
+                            $('first-click-hotzone-result-' + task_num + '-' + (hotzone_count+1)).find("span[id*='heat-dur']").html(dur_ave);
+                            var percent = Math.round(count_dp_num/coord_data_dict[task_num]['data'].length*100);
+                            $('first-click-hotzone-result-' + task_num + '-' + (hotzone_count+1)).find("span[id*='heat-percent']").html('' + percent);
+                            $('first-click-hotzone-result-' + task_num + '-' + (hotzone_count+1)).find("span[id*='heat-num']").html('' + count_dp_num);
+                            $('first-click-hotzone-result-' + task_num + '-' + (hotzone_count+1)).find("div[id*='heat-bar']").css('width', percent + '%');
+                            renumberHotzones(task_num);
+                        }
+                        $(document).off("mouseup");
+                    });
+                    // console.log('hhh');
+                });
+                // console.log('hhh');
+            });
+        });
+
+        $('#heat-img-'+task_num).on('load',function(){
+            realWidth = this.width;
+            realHeight = this.height;
+            $('#heat-img-'+task_num).parent().width(realWidth);
+            $('#heat-img-'+task_num).parent().height(realHeight);
+            $('#heat-img-'+task_num).parent().css('position', 'relative');
+            var heatmapInstance = h337.create({
+                container: document.querySelector('#heatmap-canvas-'+task_num),
+            });
+            heatmapInstance.setData(coord_data_dict[task_num]);
+        });
+
+        $('#click-img-'+task_num).on('load',function(){
+            realWidth = this.width;
+            realHeight = this.height;
+            $('#click-img-'+task_num).parent().width(realWidth);
+            $('#click-img-'+task_num).parent().height(realHeight);
+            $('#click-img-'+task_num).parent().css('position', 'relative');
+            for(var dp=0; dp<coord_data_dict[task_num]['data'].length; dp++) {
+                var x_val = coord_data_dict[task_num]['data'][dp]['x'];
+                var y_val = coord_data_dict[task_num]['data'][dp]['y'];
+                var dot = document.createElement("div");
+                dot.className = "click-dot";
+                dot.style.left = (x_val - 7) + "px";
+                dot.style.top = (y_val - 7) + "px";
+                dot.style.width = "14px";
+                dot.style.height = "14px";
+                document.getElementById('click-canvas-'+task_num).appendChild(dot);
+                $("div.click-dot").css({
+                    "position": "absolute",
+                    "z-index": "9",
+                    "border-radius": '50%',
+                    "background-color": '#108CDE',
+                    "border": '2px solid white'
+                });
+            }
+        });
+    });
+
+    function renumberHotzones(task_num) {
+        var datapoints = coord_data_dict[task_num]['data'];
+        var dp_num_count = 0;
+        var dp_percent_count = 0;
+        $("#hotzone-results-area-"+task_num).find("div[id*='first-click-hotzone-result']").each(function(index, el) {
+            // console.log($(this).attr('id'));
+            var hotzone_num = parseInt($(this).attr('id').split('-').slice(-1)[0]) - 1;
+            var hotzone_num = '' + hotzone_num;
+            // console.log(task_num);console.log(hotzone_num);
+            if($(this).attr('id').split('-').slice(-1)[0] != '1') {
+                $(this).find("p[id*='heat-title']").html('Area #'+(index+1));
+                for(var dp=0; dp<datapoints.length; dp++) {
+                    var datapoint = datapoints[dp];
+                    var hotzone_info = hotzone_dict['hotzone-'+task_num+'-'+hotzone_num];
+                    if(datapoint['x'] >= hotzone_info['x1'] && datapoint['y'] <= hotzone_info['y1'] && datapoint['x'] <= hotzone_info['x2'] && datapoint['y'] >= hotzone_info['y2']) {
+                        datapoints.splice(dp, 1);
+                        dp --;
+                    }
+                }
+                dp_num_count = dp_num_count + parseInt($(this).find("span[id*='heat-num']").text());
+                dp_percent_count = dp_percent_count + parseInt($(this).find("span[id*='heat-percent']").text());
+            }
+        });
+        var other_dp_num = coord_data_dict[task_num]['data'].length - dp_num_count;
+        var other_dp_percent = 100 - dp_percent_count;
+        var other_dur_count = 0;
+        for(var dp=0; dp<datapoints.length; dp++) {
+            other_dur_count = other_dur_count + datapoints[dp]['dur'];
+        }
+        var other_dur_ave = (other_dur_count/datapoints.length).toFixed(1);
+        $("#heat-dur-"+task_num+'-1').html(other_dur_ave);
+        $("#heat-percent-"+task_num+'-1').html('' + other_dp_percent);
+        $("#heat-num-"+task_num+'-1').html('' + other_dp_num);
+        $("#heat-bar-"+task_num+'-1').css('width', other_dp_percent + '%');
+    }
+</script>
